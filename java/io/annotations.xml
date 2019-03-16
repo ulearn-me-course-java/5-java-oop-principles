@@ -1,0 +1,5 @@
+<root>
+    <item name='java.io.FileWriter'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
