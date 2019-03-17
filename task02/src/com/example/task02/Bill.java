@@ -3,18 +3,9 @@ package com.example.task02;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Счет к оплате
- */
 public class Bill {
     private List<BillItem> items = new ArrayList<>();
 
-    /**
-     * Добавляет товар в корзину
-     *
-     * @param item товар
-     * @param amount количество
-     */
     public void add(Item item, int amount) {
         boolean found = false;
         for (BillItem billItem: items) {
@@ -29,11 +20,6 @@ public class Bill {
         }
     }
 
-    /**
-     * Подсчитывает общую сумму покупки
-     *
-     * @return общую стоимость покупки
-     */
     public long getPrice() {
         long price = 0;
         for (BillItem item: items) {

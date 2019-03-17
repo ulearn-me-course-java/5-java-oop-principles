@@ -1,8 +1,5 @@
 package com.example.task02;
 
-/**
- * Товар в магазине
- */
 public class Item {
 
     private final String name;
