@@ -69,7 +69,7 @@ public class Logger {
 
     public void log(LevelOfImportance level, String message) {
         if (this.level == null || (level != null && level.compareTo(this.level) <= 0)) {
-            DateFormat dateFormat = new SimpleDateFormat("dd.MM.YYYY hh:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("YYYY.MM.dd hh:mm:ss");
             Date date = new Date();
             System.out.println(String.format("[%s] %s %s - %s", level, dateFormat.format(date), name, message));
         }
@@ -77,7 +77,7 @@ public class Logger {
 
     public void log(LevelOfImportance level, String format, Object... args) {
         if (level != null && this.level != null && level.compareTo(this.level) <= 0) {
-            String time = new SimpleDateFormat("dd.MM.YYYY_hh:mm:ss").format(Calendar.getInstance().getTime());
+            String time = new SimpleDateFormat("YYYY.MM.dd_hh:mm:ss").format(Calendar.getInstance().getTime());
             System.out.println(String.format("[%s] %s %s - %s", level, time, name, String.format(format, args)));
         }
     }
