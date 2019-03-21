@@ -10,12 +10,19 @@ public class Task02Main {
     private static final Item ITEM6 = new Item("Товар 6", 60);
 
     public static void main(String[] args) {
+
         Bill bill = new Bill();
         bill.add(ITEM1, 10);
         bill.add(ITEM3, 3);
         bill.add(ITEM6, 1);
+        DiscountBill disc = new DiscountBill(20);
+        disc.add(ITEM1, 10);
+        disc.add(ITEM3, 3);
+        disc.add(ITEM6, 1);
         System.out.println(bill);
-        bill.add(ITEM3, 3);
-        System.out.println(bill);
+        System.out.println(disc);
+        disc.setDisc(50);
+        System.out.println(disc);//50 проц от первонач суммы
+        System.out.println(disc.absDiscount());
     }
 }
