@@ -17,5 +17,18 @@ public class Task02Main {
         System.out.println(bill);
         bill.add(ITEM3, 3);
         System.out.println(bill);
+        System.out.println("\n\n");
+
+        DiscountBill db = new DiscountBill();
+        db.discount = 20;
+        System.out.println("Новый чек со скидкой \n" + db.getDiscount()+"\n");
+        db.add(ITEM1, 10);
+        db.add(ITEM3, 3);
+        db.add(ITEM6, 1);
+        System.out.println(db);
+        System.out.println(db.getAbsDiscount()+"\n");
+        db.add(ITEM3, 3);
+        System.out.println(db);
+        System.out.println(db.getAbsDiscount());
     }
 }
