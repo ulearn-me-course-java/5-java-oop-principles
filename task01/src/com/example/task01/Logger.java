@@ -15,7 +15,7 @@ enum LogLevels {
 public class Logger {
     private LogLevels thisLevel;
     private String name;
-    private static int maxLevel = 0; //TODO
+    private static int maxLevel = 0;
     private static ArrayList<Logger> loggerList = new ArrayList<>();
 
     public Logger(String Name) {
