@@ -80,8 +80,8 @@ public class Logger {
     }
 
     public void debug(String out) {
-        if (maxLevel < 2) {
-            maxLevel = 2;
+        if (maxLevel < 1) {
+            setLevel(LogLevels.DEBUG);
         }
         if (maxLevel == 2) {
             log(LogLevels.DEBUG, out);
@@ -89,8 +89,8 @@ public class Logger {
     }
 
     public void debug(String template, Object... vars) {
-        if (maxLevel < 2) {
-            maxLevel = 2;
+        if (maxLevel < 1) {
+            setLevel(LogLevels.DEBUG);
         }
         if (maxLevel == 2) {
             log(LogLevels.DEBUG, template, vars);
@@ -98,8 +98,8 @@ public class Logger {
     }
 
     public void info(String out) {
-        if (maxLevel < 3) {
-            maxLevel = 1;
+        if (maxLevel < 2) {
+            setLevel(LogLevels.INFO);
         }
         if (maxLevel == 1) {
             log(LogLevels.INFO, out);
@@ -107,8 +107,8 @@ public class Logger {
     }
 
     public void info(String template, Object... vars) {
-        if (maxLevel < 3) {
-            maxLevel = 1;
+        if (maxLevel < 2) {
+            setLevel(LogLevels.INFO);
         }
         if (maxLevel == 1) {
             log(LogLevels.INFO, template, vars);
@@ -117,7 +117,7 @@ public class Logger {
 
     public void warning(String out) {
         if (maxLevel < 3) {
-            maxLevel = 3;
+            setLevel(LogLevels.WARNING);
         }
         if (maxLevel == 3) {
             log(LogLevels.WARNING, out);
@@ -126,7 +126,7 @@ public class Logger {
 
     public void warning(String template, Object... vars) {
         if (maxLevel < 3) {
-            maxLevel = 3;
+            setLevel(LogLevels.WARNING);
         }
         if (maxLevel == 3) {
             log(LogLevels.WARNING, template, vars);
@@ -135,7 +135,7 @@ public class Logger {
 
     public void error(String out) {
         if (maxLevel < 4) {
-            maxLevel = 4;
+            setLevel(LogLevels.ERROR);
         }
         if (maxLevel == 4) {
             log(LogLevels.ERROR, out);
@@ -144,7 +144,7 @@ public class Logger {
 
     public void error(String template, Object... vars) {
         if (maxLevel < 4) {
-            maxLevel = 4;
+            setLevel(LogLevels.ERROR);
         }
         if (maxLevel == 4) {
             log(LogLevels.ERROR, template, vars);
