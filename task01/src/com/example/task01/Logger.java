@@ -18,6 +18,10 @@ public class Logger {
     private SeverityLevels lvl;
 
     public Logger(String name) {
+        for (Logger log : loggers) {
+            if (log.getName() == name)
+                throw new IllegalArgumentException();
+        }
         this.name = name;
         loggers.add(this);
     }
@@ -31,7 +35,8 @@ public class Logger {
             if (log.getName() == name)
                 return log;
         }
-        throw new IllegalArgumentException();
+        Logger newLog = new Logger(name);
+        return newLog;
     }
 
     void log(SeverityLevels lvl, String mess) {
@@ -42,7 +47,7 @@ public class Logger {
         SimpleDateFormat formatDate =
                 new SimpleDateFormat("yyyy.mm.dd hh:mm:ss");
         //[<LEVEL>] <DATE> <TIME> <NAME> - <MESSAGE>
-        if (this.lvl.compareTo(lvl) <= 0)
+        if (this.lvl == null || this.lvl.compareTo(lvl) <= 0)
             System.out.println("[" + lvl + "] " + formatDate.format(new Date()) + " "
                     + name + " - " + String.format(mess, objects));
     }
@@ -56,34 +61,34 @@ public class Logger {
     }
 
     public void error(String mess) {
-        log(lvl, mess, null);
+        log(SeverityLevels.ERROR, mess, null);
     }
 
     public void error(String mess, Object... objects) {
-        log(lvl, mess, objects);
+        log(SeverityLevels.ERROR, mess, objects);
     }
 
     public void warning(String mess) {
-        log(lvl, mess, null);
+        log(SeverityLevels.WARNING, mess, null);
     }
 
     public void warning(String mess, Object... objects) {
-        log(lvl, mess, objects);
+        log(SeverityLevels.WARNING, mess, objects);
     }
 
     public void info(String mess) {
-        log(lvl, mess, null);
+        log(SeverityLevels.INFO, mess, null);
     }
 
     public void info(String mess, Object... objects) {
-        log(lvl, mess, objects);
+        log(SeverityLevels.INFO, mess, objects);
     }
 
     public void debug(String mess) {
-        log(lvl, mess, null);
+        log(SeverityLevels.DEBUG, mess, null);
     }
 
     public void debug(String mess, Object... objects) {
-        log(lvl, mess, objects);
+        log(SeverityLevels.DEBUG, mess, objects);
     }
 }
