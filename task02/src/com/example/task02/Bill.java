@@ -34,7 +34,7 @@ public class Bill {
      *
      * @return общую стоимость покупки
      */
-    public long getPrice() {
+    public double getPrice() {
         long price = 0;
         for (BillItem item: items) {
             price += item.item.getPrice() * item.amount;
