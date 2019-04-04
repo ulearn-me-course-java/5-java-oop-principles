@@ -16,6 +16,7 @@ public class Tests {
         long actualMillis = timeUnit.toMillis();
         long actualSeconds = timeUnit.toSeconds();
         long actualMinutes = timeUnit.toMinutes();
+
         Assert.assertEquals("Количество миллисекунд не соответствует ожидаемому", expectedMillis, actualMillis);
         Assert.assertEquals("Количество секунд не соответствует ожидаемому", expectedSeconds, actualSeconds);
         Assert.assertEquals("Количество минут не соответствует ожидаемому", expectedMinutes, actualMinutes);
