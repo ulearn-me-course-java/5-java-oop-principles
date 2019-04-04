@@ -17,7 +17,6 @@ import org.junit.Test;
 public class Tests {
 
     private final Class<?> LOGGER_CLASS;
-
     {
         try {
             LOGGER_CLASS = Class.forName("com.example.task01.Logger");
