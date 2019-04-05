@@ -79,21 +79,20 @@ public class Logger {
         log(MessageLevel.ERROR, format, objects);
     }
 
-    public void log(MessageLevel msgLevel, String message){
-
-        log(msgLevel, "%s", message);
+    public void log(MessageLevel msgLevel, String format, Object... objects){
+        log(msgLevel, String.format(format, objects));
     }
 
-    public void log(MessageLevel msgLevel, String format, Object... objects){
+    public void log(MessageLevel msgLevel, String message){
 
         if(MessageUtil.GetValue(msgLevel) < MessageUtil.GetValue(_msgLevel))
             return;
 
         String LEVEL = "[" + MessageUtil.toString(msgLevel) + "]";
-        String DATE = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String DATE = new SimpleDateFormat("YYYY.MM.DD").format(new Date());
         String TIME = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
-        System.out.println(LEVEL + " " + DATE + " " + TIME + " " + _name + " - " + String.format(format, objects));
+        System.out.println(LEVEL + " " + DATE + " " + TIME + " " + _name + " - " + message);
     }
 
 
@@ -101,3 +100,4 @@ public class Logger {
         loggers.remove(this);
     }
 }
+
