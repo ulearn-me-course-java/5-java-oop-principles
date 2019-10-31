@@ -6,6 +6,10 @@ package com.example.task02;
 public class DiscountBill extends Bill {
     private double discount = 0;
 
+    public DiscountBill() {
+        super();
+    }
+
     /**
      * Конструктор класса DiscountBill.
      * Параметр discount, передаваемый в конструктор, должен принимать действительные значения от 0 до 1.
