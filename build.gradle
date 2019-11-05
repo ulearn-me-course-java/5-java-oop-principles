@@ -29,5 +29,9 @@ subprojects {
     dependencies {
         compile group: 'junit', name: 'junit', version: '4.12'
         compile group: 'org.assertj', name: 'assertj-core', version: '3.10.0'
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+        testCompileOnly 'org.projectlombok:lombok:1.18.10'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
     }
 }
