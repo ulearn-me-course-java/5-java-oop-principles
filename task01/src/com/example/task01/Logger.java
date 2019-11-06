@@ -64,7 +64,7 @@ public class Logger {
      * @param message - сообщение
      * @param level   - уровень логгирования
      */
-    public void log(@NonNull String message, @NonNull Level level) {
+    public void log(@NonNull String message, Level level) {
         if (this.level == null) {
             this.level = level;
         }
@@ -86,7 +86,7 @@ public class Logger {
      * @param level    - уровень логгирования
      * @param objects  - переменное число аргументов, подставляемых в шаблон
      */
-    public void log(@NonNull String template, @NonNull Level level, @NonNull Object... objects) {
+    public void log(@NonNull String template, Level level, @NonNull Object... objects) {
         if (this.level == null) {
             this.level = level;
         }
