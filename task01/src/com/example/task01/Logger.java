@@ -1,10 +1,10 @@
 package com.example.task01;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
-
 import lombok.NonNull;
 
 /**
@@ -12,32 +12,26 @@ import lombok.NonNull;
  */
 public class Logger {
 
-    private String name;
+    private final String name;
     private Level level;
     private static Map<String, Logger> loggers = new HashMap<String, Logger>();
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
     /**
-     * Конструктор создает экземпляр класса (логгер) с указанным в параметре name именем,
-     * если логгер с данным именем еще не был создан (т.е. не содержится в контейнере loggers).
+     * По умолчанию логгер создается с самым высоким уровнем важности - ERROR
      *
      * @param name
      */
-    public Logger(@NonNull String name) {
-        if (!loggers.containsKey(name)) {
-            this.name = name;
-            loggers.put(name, this);
-        }
-    }
-
-    public String getName() {
-        return this.name;
+    private Logger(String name) {
+        this.name = name;
+        this.level = Level.ERROR;
     }
 
     /**
      * Метод возвращает экземпляр логгера с указанным именем.
      * Повторый вызов с тем же аргументом должен возвращать тот же самый экземпляр, что и при первом вызове.
      * Если логгер с указанным именем существует, то возвращается логгер соответсвующий имени,
-     * иначе генерируется исключение NullPointerException.
+     * иначе создается и возвращается новый логгер.
      *
      * @param name
      * @return
@@ -45,8 +39,15 @@ public class Logger {
     public static Logger getLogger(@NonNull String name) {
         if (loggers.containsKey(name)) {
             return loggers.get(name);
-        } else
-            throw new NullPointerException();
+        } else {
+            Logger logger = new Logger(name);
+            loggers.put(logger.name, logger);
+            return logger;
+        }
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public void setLevel(Level level) {
@@ -64,16 +65,9 @@ public class Logger {
      * @param message - сообщение
      * @param level   - уровень логгирования
      */
-    public void log(@NonNull String message, Level level) {
-        if (this.level == null) {
-            this.level = level;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    public void log(@NonNull String message, @NonNull Level level) {
         if (this.level.compareTo(level) >= 0) {
-            System.out.println("[" + level + "] "
-                    + dateFormat.format(new Date())
-                    + " " + name + " - "
-                    + message);
+            System.out.println("[" + level + "] " + dateFormat.format(new Date()) + " " + name + " - " + message);
         }
     }
 
@@ -86,16 +80,11 @@ public class Logger {
      * @param level    - уровень логгирования
      * @param objects  - переменное число аргументов, подставляемых в шаблон
      */
-    public void log(@NonNull String template, Level level, @NonNull Object... objects) {
-        if (this.level == null) {
-            this.level = level;
+    public void log(@NonNull String template, @NonNull Level level, @NonNull Object... objects) {
+        if (this.level.compareTo(level) >= 0) {
+            String message = String.format(template, objects);
+            this.log(message, level);
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-        if (this.level.compareTo(level) >= 0)
-            System.out.println("[" + level + "] "
-                    + dateFormat.format(new Date())
-                    + " " + name + " - "
-                    + String.format(template, objects));
     }
 
     public void debug(@NonNull String message) {
