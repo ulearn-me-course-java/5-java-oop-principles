@@ -2,8 +2,8 @@ package com.example.task01;
 
 public class Task01Main {
     public static void main(String[] args) {
-        Logger log1 = new Logger("log1");
-        Logger log2 = new Logger("log2");
+        Logger log1 = Logger.getLogger("log1");
+        Logger log2 = Logger.getLogger("log2");
         Logger log3 = Logger.getLogger("log2");
         //сравниваем ссылки
         if (log2 == log3) {
