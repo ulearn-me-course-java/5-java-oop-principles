@@ -8,30 +8,40 @@ import java.util.Map;
 
 public class Logger {
     private String name;
-    private static String minimalLevel = "DEBUG";
-    private static Map<String, Logger> LoggerInstances = new HashMap<>();
+    private String minimalLevel = "DEBUG";
+    private final static Map<String, Logger> loggerInstances = new HashMap<>();
+    private static  SimpleDateFormat formatter = new SimpleDateFormat("YYYY.MM.dd HH:mm:ss");
 
     public static Logger getLogger(String name) {
         if (name == null) {
             throw new IllegalArgumentException("Name must be not null");
         }
-        Logger out = LoggerInstances.get(name);
+        Logger out = loggerInstances.get(name);
         if (out == null) {
             out = new Logger(name);
-            LoggerInstances.put(name, out);
+            loggerInstances.put(name, out);
         }
         return out;
+    }
+
+    public void setName(String name) {
+        Logger current = loggerInstances.get(this.name);
+        loggerInstances.remove(this.name);
+        this.name = name;
+        loggerInstances.put(name, current);
     }
 
     public String getName() {
         return this.name;
     }
 
-    public static String getLevel() {
-        return new String(minimalLevel);
+    public String getLevel() {
+        return minimalLevel;
     }
 
-    public static void setLevel(String level) {
+
+
+    public void setLevel(String level) {
         if (level == null) {
             throw new IllegalArgumentException("Level must be not null");
         }
@@ -47,6 +57,15 @@ public class Logger {
         }
     }
 
+    private boolean canLog(String level){
+        if (minimalLevel.equals("INFO") && level.equals("DEBUG"))
+            return false;
+        if (minimalLevel.equals("WARNING") && (level.equals("DEBUG") || level.equals("INFO")))
+            return false;
+        if (minimalLevel.equals("ERROR") && (level.equals("DEBUG") || level.equals("INFO") || level.equals("WARNING")))
+            return false;
+        return true;
+    }
 
     public void log(String level, String message) {
         if (level == null || message == null) {
@@ -97,6 +116,8 @@ public class Logger {
             throw new IllegalArgumentException("Message must be not null");
         }
         String level = "ERROR";
+        if(!canLog(level))
+            return;
         printMessage(level, this.name, message);
     }
 
@@ -104,8 +125,10 @@ public class Logger {
         if (template == null) {
             throw new IllegalArgumentException("Template must be not null");
         }
-        String message = String.format(template, args);
         String level = "ERROR";
+        if(!canLog(level))
+            return;
+        String message = String.format(template, args);
         printMessage(level, this.name, message);
     }
 
@@ -114,6 +137,8 @@ public class Logger {
             throw new IllegalArgumentException("Message must be not null");
         }
         String level = "INFO";
+        if(!canLog(level))
+            return;
         printMessage(level, this.name, message);
     }
 
@@ -121,8 +146,10 @@ public class Logger {
         if (template == null) {
             throw new IllegalArgumentException("Template must be not null");
         }
-        String message = String.format(template, args);
         String level = "INFO";
+        if(!canLog(level))
+            return;
+        String message = String.format(template, args);
         printMessage(level, this.name, message);
     }
 
@@ -131,6 +158,8 @@ public class Logger {
             throw new IllegalArgumentException("Message must be not null");
         }
         String level = "WARNING";
+        if(!canLog(level))
+            return;
         printMessage(level, this.name, message);
     }
 
@@ -138,8 +167,10 @@ public class Logger {
         if (template == null) {
             throw new IllegalArgumentException("Template must be not null");
         }
-        String message = String.format(template, args);
         String level = "WARNING";
+        if(!canLog(level))
+            return;
+        String message = String.format(template, args);
         printMessage(level, this.name, message);
     }
 
@@ -148,6 +179,8 @@ public class Logger {
             throw new IllegalArgumentException("Message must be not null");
         }
         String level = "DEBUG";
+        if(!canLog(level))
+            return;
         printMessage(level, this.name, message);
     }
 
@@ -155,24 +188,16 @@ public class Logger {
         if (template == null) {
             throw new IllegalArgumentException("Template must be not null");
         }
-        String message = String.format(template, args);
         String level = "DEBUG";
+        if(!canLog(level))
+            return;
+        String message = String.format(template, args);
         printMessage(level, this.name, message);
     }
 
     private static void printMessage(String level, String name, String message) {
-        if (minimalLevel.equals("INFO") && level.equals("DEBUG"))
-            return;
-        if (minimalLevel.equals("WARNING") && (level.equals("DEBUG") || level.equals("INFO")))
-            return;
-        if (minimalLevel.equals("ERROR") && (level.equals("DEBUG") || level.equals("INFO") || level.equals("WARNING")))
-            return;
-        SimpleDateFormat formatter = new SimpleDateFormat("YYYY.MM.dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(String.format("[%s] %s %s - %s", level, formatter.format(date), name, message));
-    }
-
-    private Logger() {
     }
 
     private Logger(String name) {
