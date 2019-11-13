@@ -11,7 +11,7 @@ public class DiscountBill extends Bill {
     }
 
     public double getDiscount() {
-        return discount * 100;
+        return discount;
     }
 
     @Override
