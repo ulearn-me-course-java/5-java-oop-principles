@@ -49,7 +49,7 @@ public class Logger {
         return this.name;
     }
 
-    public void setLevel(Level level) {
+    public void setLevel(@NonNull Level level) {
         this.level = level;
     }
 
