@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Logger {
-    private String name;
+    private final String name;
     private String minimalLevel = "DEBUG";
     private final static Map<String, Logger> loggerInstances = new HashMap<>();
     private static  SimpleDateFormat formatter = new SimpleDateFormat("YYYY.MM.dd HH:mm:ss");
@@ -24,13 +24,7 @@ public class Logger {
         return out;
     }
 
-    public void setName(String name) {
-        Logger current = loggerInstances.get(this.name);
-        loggerInstances.remove(this.name);
-        this.name = name;
-        loggerInstances.put(name, current);
-    }
-
+    
     public String getName() {
         return this.name;
     }
