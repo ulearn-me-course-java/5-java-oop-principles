@@ -6,17 +6,12 @@ package com.example.task02;
 public class DiscountBill extends Bill {
     private double discount = 0;
 
-    public DiscountBill() {
-        super();
-    }
-
     /**
      * Конструктор класса DiscountBill.
      * Параметр discount, передаваемый в конструктор, должен принимать действительные значения от 0 до 1.
      * Например,  discount = 0.025, означает, что к счету применяется скидка  2.5 %
      */
     public DiscountBill(double discount) {
-        super();
         if (discount < 0 || discount >= 1) {
             throw new IllegalArgumentException("parameter \"discount\" must be >= 0 and < 1");
         }
