@@ -13,7 +13,7 @@ public class Logger {
 
     private final String name;
     private Level level;
-    private static Map<String, Logger> loggers = new HashMap<String, Logger>();
+    private static final Map<String, Logger> loggers = new HashMap<String, Logger>();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
     /**
