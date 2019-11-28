@@ -7,7 +7,8 @@ import lombok.NonNull;
 
 /**
  * MemoryHandler - обработчик-прокси, который аккумулирует сообщения в памяти (список строк messages)
- * и при достижении определенного объема, задаваемого полем limit, отправляет их в проксируемый обработчик.
+ * и при достижении определенного объема, задаваемого полем limit, а также при завершении программы
+ * отправляет их в проксируемый обработчик.
  */
 public class MemoryHandler implements MessageHandler {
     long limit;
@@ -17,6 +18,12 @@ public class MemoryHandler implements MessageHandler {
     public MemoryHandler(long limit, MessageHandler destination) {
         this.limit = limit;
         this.destination = destination;
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            for (String m : messages) {
+                destination.printMessage(m);
+            }
+            messages.clear();
+        }));
     }
 
     @Override
@@ -27,17 +34,6 @@ public class MemoryHandler implements MessageHandler {
                 destination.printMessage(m);
             }
             messages.clear();
-        }
-        try {
-            Runtime.getRuntime().addShutdownHook(new Thread() {
-                @Override
-                public void run() {
-                    System.out.println("---Shutdown Hook---");
-                    messages.clear();
-                }
-            });
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
         }
     }
 }
