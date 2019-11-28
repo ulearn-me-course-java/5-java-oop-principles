@@ -13,7 +13,7 @@ public class Logger {
     private final String name;
     private Level level;
     private static Map<String, Logger> loggers = new HashMap<String, Logger>();
-    public static List<MessageHandler> handlers = new ArrayList<>();
+    private static List<MessageHandler> handlers = new ArrayList<>();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
     /**
@@ -45,7 +45,7 @@ public class Logger {
         }
     }
 
-    public void addHandler(@NonNull MessageHandler handler) {
+    public static void addHandler(@NonNull MessageHandler handler) {
         handlers.add(handler);
     }
 
@@ -69,8 +69,9 @@ public class Logger {
      */
     public void log(@NonNull String message, @NonNull Level level) {
         if (this.level.compareTo(level) >= 0) {
+            String loggedMessage = "[" + level + "] " + dateFormat.format(new Date()) + " " + name + " - " + message;
             for (MessageHandler handle : this.handlers) {
-                handle.printMessage("[" + level + "] " + dateFormat.format(new Date()) + " " + name + " - " + message);
+                handle.printMessage(loggedMessage);
             }
         }
     }
@@ -122,3 +123,4 @@ public class Logger {
         log(template, Level.ERROR, objects);
     }
 }
+
