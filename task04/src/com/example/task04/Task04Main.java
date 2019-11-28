@@ -1,14 +1,15 @@
 package com.example.task04;
 
+import java.io.IOException;
 import java.time.temporal.ChronoUnit;
 
 import static java.lang.Thread.*;
 
 public class Task04Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConsoleHandler ch = new ConsoleHandler();
-        FileHandler fh = new FileHandler();
-        RotationFileHandler rfh = new RotationFileHandler(ChronoUnit.SECONDS);
+        FileHandler fh = new FileHandler("log.txt");
+        RotationFileHandler rfh = new RotationFileHandler("", ChronoUnit.SECONDS);
         MemoryHandler mh = new MemoryHandler(3, fh);
         Logger l = Logger.getLogger("log1");
         l.addHandler(ch);
