@@ -6,17 +6,30 @@ import lombok.NonNull;
 
 /**
  * Обработчик, выводящий сообщения в файл путем дописывания сообщений к существующему файлу.
- * Ошибка записи в файл генерирует исключение IOException, при обработке которого
- * в консоль выводится сообщение о возникновении исключения.
  */
 public class FileHandler implements MessageHandler {
+
+    private FileWriter outputFile;
+
+    public FileHandler(@NonNull String path) throws IOException {
+        this.outputFile = new FileWriter(path, true);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                outputFile.flush();
+                outputFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }));
+    }
+
     @Override
     public void printMessage(@NonNull String message) {
-        try (FileWriter fw = new FileWriter("log.txt", true)) {
-            fw.append(message + "\n");
-            fw.flush();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        try {
+            outputFile.append(message + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
+
