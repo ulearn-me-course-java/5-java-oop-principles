@@ -2,8 +2,6 @@ package com.example.task04;
 
 import java.io.*;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.ArrayList;
 
 import lombok.NonNull;
 
@@ -19,7 +17,6 @@ public class RotationFileHandler implements MessageHandler {
     private long printTime;
     private FileWriter outputFile;
     private String outputFileName;
-    private static final List<FileWriter> writers = new ArrayList<FileWriter>();
 
     /**
      * Примечание: название файла генерируется внутри конструктора,
@@ -31,20 +28,16 @@ public class RotationFileHandler implements MessageHandler {
      */
     public RotationFileHandler(@NonNull String path, @NonNull ChronoUnit duration) throws IOException {
         this.duration = duration;
-        this.printTime = System.currentTimeMillis();
-        this.outputFileName = path + "log" + printTime + ".txt";
-        this.outputFile = new FileWriter(outputFileName, true);
-        writers.add(outputFile);
+        printTime = System.currentTimeMillis();
+        outputFileName = path + "log" + printTime + ".txt";
+        outputFile = new FileWriter(outputFileName, true);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            writers.forEach(file -> {
-                try {
-                    file.flush();
-                    file.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-
+            try {
+                outputFile.flush();
+                outputFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }));
     }
 
@@ -52,10 +45,11 @@ public class RotationFileHandler implements MessageHandler {
     public void printMessage(@NonNull String message) {
         if (System.currentTimeMillis() - printTime >= duration.getDuration().toMillis()) {
             printTime = System.currentTimeMillis();
-            this.outputFileName = "log" + printTime + ".txt";
+            outputFileName = "log" + printTime + ".txt";
             try {
-                this.outputFile = new FileWriter(outputFileName, true);
-                writers.add(outputFile);
+                outputFile.flush();
+                outputFile.close();
+                outputFile = new FileWriter(outputFileName, true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,4 +62,3 @@ public class RotationFileHandler implements MessageHandler {
         }
     }
 }
-
