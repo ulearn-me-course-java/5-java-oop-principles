@@ -3,6 +3,11 @@ package com.example.task02;
 public class DiscountBill extends Bill {
     private int discount;
 
+    /**
+     * Задает размер скидки в процентах
+     * @param sizeDiscount
+     */
+
     public DiscountBill(int sizeDiscount) {
         setDiscount(discount);
     }
