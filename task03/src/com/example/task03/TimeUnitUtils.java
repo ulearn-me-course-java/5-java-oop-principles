@@ -6,22 +6,42 @@ package com.example.task03;
 public class TimeUnitUtils {
 
     /**
-     * Конвертирует интервал в секундах в интервал в миллисекундах
+     * Переводит объект любого класса, реализующего интерфейс TimeUnit в Миллисекунды
      *
-     * @param seconds интервал в секундах
-     * @return интервал в миллисекундах
+     * @param unit Объект класса, реализующего интерфейс TimeUnit
+     * @return Объект класса Milliseconds
      */
-    public static Milliseconds toMillis(Seconds seconds) {
-        return new Milliseconds(seconds.toMillis());
+    public static Milliseconds toMillis(TimeUnit unit) {
+        return new Milliseconds(unit.toMillis());
     }
 
     /**
-     * Конвертирует интервал в миллисекундах в интервал в секундах
+     * Переводит объект любого класса, реализующего интерфейс TimeUnit в Секунды
      *
-     * @param millis интервал в миллисекундах
-     * @return интервал в секундах
+     * @param unit Объект класса, реализующего интерфейс TimeUnit
+     * @return Объект класса Seconds
      */
-    public static Seconds toSeconds(Milliseconds millis) {
-        return new Seconds(millis.toSeconds());
+    public static Seconds toSeconds(TimeUnit unit) {
+        return new Seconds(unit.toSeconds());
+    }
+
+    /**
+     * Переводит объект любого класса, реализующего интерфейс TimeUnit в Минуты
+     *
+     * @param unit Объект класса, реализующего интерфейс TimeUnit
+     * @return Объект класса Minutes
+     */
+    public static Minutes toMinutes(TimeUnit unit) {
+        return new Minutes(unit.toMinutes());
+    }
+
+    /**
+     * Переводит объект любого класса, реализующего интерфейс TimeUnit в Часы
+     *
+     * @param unit Объект класса, реализующего интерфейс Hours
+     * @return Объект класса Milliseconds
+     */
+    public static Hours toHours(TimeUnit unit) {
+        return new Hours(unit.toHours());
     }
 }
