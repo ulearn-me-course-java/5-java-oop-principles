@@ -17,7 +17,6 @@ public class Logger {
 
     private Logger(String name) {
         this.name = name;
-        loggers.put(name, this);
     }
 
     public String getName() {
@@ -68,11 +67,13 @@ public class Logger {
     }
 
     public static Logger getLogger(String name) {
-        Logger logger = loggers.get(name);
-        if (logger == null) {
-            logger = new Logger(name);
+        if (loggers.containsKey(name)) {
+            return loggers.get(name);
+        } else {
+            Logger logger = new Logger(name);
+            loggers.put(logger.name, logger);
+            return logger;
         }
-        return logger;
     }
 
     public Level getLevel() {
