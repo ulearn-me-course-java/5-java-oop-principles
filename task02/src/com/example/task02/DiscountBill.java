@@ -10,6 +10,13 @@ public class DiscountBill extends Bill {
      */
     private int discount = 0;
 
+    public DiscountBill(int discount) {
+        if (discount < 0 || discount >= 100) {
+            throw new IllegalArgumentException("Invalid discount.");
+        }
+        this.discount = discount;
+    }
+
     /**
      * Возвращает процент скидки
      */
