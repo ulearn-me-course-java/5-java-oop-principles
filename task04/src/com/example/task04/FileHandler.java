@@ -11,6 +11,14 @@ public class FileHandler implements MessageHandler {
 
     public FileHandler(String fileName) throws IOException {
         this.writer = new FileWriter(fileName, true);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }));
     }
 
     @Override

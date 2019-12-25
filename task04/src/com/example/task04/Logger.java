@@ -14,6 +14,7 @@ public class Logger {
     private Level level = Level.DEBUG;
     private static HashMap<String, Logger> loggers = new HashMap<>();
     private ArrayList<MessageHandler> handlers = new ArrayList<>();
+    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy.MM.dd hh:mm:ss");
 
     /**
      * Уровни важности сообщений.
@@ -165,7 +166,7 @@ public class Logger {
      */
     public void log(Level level, String message) throws IOException {
         if (level.ordinal() >= this.level.ordinal()) {
-            String dateNow = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd hh:mm:ss"));
+            String dateNow = LocalDateTime.now().format(dateFormat);
             for (MessageHandler handler : handlers) {
                 handler.printMessage(String.format("[%s] %s %s - %s%s", level, dateNow, name, message, lineSeparator));
             }

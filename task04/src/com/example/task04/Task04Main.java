@@ -7,7 +7,7 @@ public class Task04Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         Logger logger1 = Logger.getLogger("logger");
         logger1.addHandler(new MemoryHandler(new FileHandler("C:/javalog/mem.txt"), 5));
-        logger1.addHandler(new RotationFileHandler("C:/javalog/rfh", "yyyy_MM_dd_hh_mm", ChronoUnit.MINUTES));
+        logger1.addHandler(new RotationFileHandler("C:/javalog/rfh", ChronoUnit.MINUTES));
 
         logger1.debug("some message 1");
         logger1.info("some message 1");
