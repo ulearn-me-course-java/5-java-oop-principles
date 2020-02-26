@@ -14,6 +14,7 @@ public class Logger {
     }
 
     private static HashMap<String, Logger> loggers;
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("YYYY.MM.dd HH:mm:ss");
 
     static {
         loggers = new HashMap<>();
@@ -76,13 +77,10 @@ public class Logger {
     }
 
     public void log(Level level, String template, Object... args){
-        String message = MessageFormat.format(template, args);
-        if(level.ordinal() >= this.level.ordinal())
-            System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}", level, new Date(), name, message));
+        log(level, MessageFormat.format(template, args));
     }
 
     public void log(Level level, String message){
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY.MM.dd HH:mm:ss");
         if(level.ordinal() >= this.level.ordinal())
             System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}", level, sdf.format(new Date()), name, message));
     }
