@@ -19,7 +19,7 @@ public class RotationHandler implements MessageHandler {
     public void log(String message) {
         LocalDateTime now = LocalDateTime.now().truncatedTo(rotation);
 
-        try(FileWriter writer = new FileWriter(MessageFormat.format("{0}/{1}", path, now.toString()), true)) {
+        try(FileWriter writer = new FileWriter(MessageFormat.format("{0}/{1}.txt", path, now.toString()), true)) {
             writer.append(message);
             writer.flush();
         } catch (IOException e) {
