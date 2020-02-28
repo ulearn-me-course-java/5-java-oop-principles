@@ -6,6 +6,7 @@ public class FileHandler implements MessageHandler {
     private final String path;
 
     public FileHandler(String path) {
+        if(path == null) throw new IllegalArgumentException("Path is null");
         this.path = path;
     }
 

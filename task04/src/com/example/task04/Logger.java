@@ -22,7 +22,7 @@ public class Logger {
 
     private final String name;
     private Level level = Level.DEBUG;
-    private MessageHandler handler;
+    private final MessageHandler handler;
 
     public Logger(String name, MessageHandler handler){
         this.name = name;
