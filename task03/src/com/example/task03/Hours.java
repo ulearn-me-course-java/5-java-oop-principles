@@ -10,12 +10,12 @@ public class Hours implements TimeUnit {
 
     @Override
     public long toMillis() {
-        return amount * 3600000;
+        return amount * 60 * 60 * 1000;
     }
 
     @Override
     public long toSeconds() {
-        return amount * 360;
+        return amount * 60 * 60;
     }
 
     @Override
