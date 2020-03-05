@@ -1,4 +1,6 @@
-package com.example.task01;
+package com.example.task04;
+
+import com.example.task04.MessageHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -12,7 +14,7 @@ enum Level{
 }
 
 public class Logger {
-    //private MessageHandler handler;
+    private MessageHandler handler;
     private String name;
     private Level lvl;
     private static Logger loggers[] = new Logger[0];
