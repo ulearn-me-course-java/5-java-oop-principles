@@ -14,6 +14,12 @@ public class TimeUnitUtils {
     public static Milliseconds toMillis(Seconds seconds) {
         return new Milliseconds(seconds.toMillis());
     }
+    public static Minutes toMinutes(Seconds seconds) {
+        return new Minutes(seconds.toMinutes());
+    }
+    public static Hours toHours(Seconds seconds) {
+        return new Hours(seconds.toHours());
+    }
 
     /**
      * Конвертирует интервал в миллисекундах в интервал в секундах
