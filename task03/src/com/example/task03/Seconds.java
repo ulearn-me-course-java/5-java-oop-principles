@@ -7,22 +7,17 @@ public class Seconds implements TimeUnit {
 
     private final long amount;
 
-    public Seconds(long amount) {
-        this.amount = amount;
-    }
+    public Seconds(long amount) { this.amount = amount; }
 
     @Override
-    public long toMillis() {
-        return amount * 1000;
-    }
+    public long toMillis() { return amount * 1000; }
 
     @Override
-    public long toSeconds() {
-        return amount;
-    }
+    public long toSeconds() { return amount; }
 
     @Override
-    public long toMinutes() {
-        return Math.round(amount / 60);
-    }
+    public long toMinutes() { return Math.round((double) amount / 60); }
+
+    @Override
+    public long toHours() { return amount / (60 * 60); }
 }
