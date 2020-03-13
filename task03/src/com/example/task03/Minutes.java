@@ -25,6 +25,6 @@ public class Minutes implements TimeUnit {
 
     @Override
     public long toHours() {
-        return amount / 60;
+        return Math.round((double)amount / 60);
     }
 }

@@ -1,8 +1,5 @@
 package com.example.task03;
 
-/**
- * Интервал в миллисекундах
- */
 public class Hours implements TimeUnit {
 
     private final long amount;
