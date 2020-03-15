@@ -23,6 +23,14 @@ public class Logger {
         return name;
     }
 
+    public void setLevel(Levels level) {
+        this.level = level;
+    }
+
+    public Levels getLevel() {
+        return level;
+    }
+
 
     public static Logger getLogger(String name) {
         int ind = 0;
