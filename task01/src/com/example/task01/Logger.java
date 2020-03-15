@@ -13,7 +13,7 @@ public class Logger {
 
     private String name;
     private Level level = Level.DEBUG;
-    private PrintStream writer;
+    private PrintStream writer = System.out;
     private static Map<String, Logger> instances = new ConcurrentHashMap<>();
 
     public Logger(String name) {
@@ -47,7 +47,6 @@ public class Logger {
 
     public void log(Level level, String message) {
         if (this.level.compareTo(level) > 0) return;
-        if (writer == null) writer = System.out;
 
         String now = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
         writer.printf("[%s] %s %s - %s", level, now, name, message);

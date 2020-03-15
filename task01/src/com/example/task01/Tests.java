@@ -129,8 +129,6 @@ public class Tests {
     @Test
     public void testLogMessage() {
         try {
-            Object logger = getGetLoggerMethod().invoke(LOGGER_CLASS, "test");
-            Method error = getLoggerMethod("error", 1);
             PrintStream out = System.out;
             PrintStream err = System.err;
             try {
@@ -138,6 +136,8 @@ public class Tests {
                 PrintStream testStream = new PrintStream(baos);
                 System.setOut(testStream);
                 System.setErr(testStream);
+                Object logger = getGetLoggerMethod().invoke(LOGGER_CLASS, "test");
+                Method error = getLoggerMethod("error", 1);
                 error.invoke(logger, "test message");
                 String message = new String(baos.toByteArray(), StandardCharsets.UTF_8).trim();
                 Pattern p = Pattern.compile("\\[([^]]+)\\] \\d{4}\\.\\d{2}\\.\\d{2} \\d{2}:\\d{2}:\\d{2} (.*) - (.*)");
