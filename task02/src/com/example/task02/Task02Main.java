@@ -1,5 +1,7 @@
 package com.example.task02;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Task02Main {
 
     private static final Item ITEM1 = new Item("Товар 1", 10);
@@ -17,5 +19,14 @@ public class Task02Main {
         System.out.println(bill);
         bill.add(ITEM3, 3);
         System.out.println(bill);
+        System.out.println("============");
+        DiscountBill discount = new DiscountBill(30);
+        System.out.println(discount);
+        discount.add(ITEM1, 10);
+        discount.add(ITEM3, 3);
+        discount.add(ITEM6, 1);
+        System.out.println(discount.getPrice());
+        discount.add(ITEM3, 3);
+        System.out.println(discount.getPrice());
     }
 }
