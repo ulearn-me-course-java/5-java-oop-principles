@@ -15,6 +15,7 @@ public class FileHandler implements MessageHandler {
     public void log(String message) {
         try(FileWriter writer = new FileWriter(path, true)) {
             writer.append(message);
+            writer.append('\n');
             writer.flush();
         } catch (IOException e) {
             System.out.println (e.toString());
