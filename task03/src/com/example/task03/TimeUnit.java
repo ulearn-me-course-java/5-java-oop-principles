@@ -1,15 +1,14 @@
 package com.example.task03;
 
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.ROUND_HALF_UP;
+
 /**
  * Интерфейс для интервалов времени в определенных единицах
  */
 public interface TimeUnit {
 
-    /**
-     * Возвращает продолжительность текущего интервала, пересчитанного в миллисекундах.
-     *
-     * @return количество миллисекунд в текущем интервале
-     */
     long toMillis();
 
     /**
@@ -28,4 +27,8 @@ public interface TimeUnit {
      */
     long toMinutes();
 
+    long toHours();
+    static long division(long a, long b){
+        return new BigDecimal(a).divide(new BigDecimal(b), ROUND_HALF_UP).longValue();
+    }
 }
