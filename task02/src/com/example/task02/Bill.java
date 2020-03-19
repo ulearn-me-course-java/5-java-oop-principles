@@ -46,7 +46,7 @@ public class Bill {
     public String toString() {
         StringBuilder sb = new StringBuilder("Счет к оплате\n");
         for(BillItem item : items) {
-            sb.append(item.item.getName()).append('(').append(item.amount).append(')');
+            sb.append(item.item.getName()).append('(').append(item.amount).append(')') .append(" = ").append(item.amount * item.item.getPrice());
             sb.append('\n');
         }
         sb.append("Сумма к оплате: ").append(getPrice());
