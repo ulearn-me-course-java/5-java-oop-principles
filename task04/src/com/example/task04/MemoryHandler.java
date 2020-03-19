@@ -18,10 +18,8 @@ public class MemoryHandler implements MessageHandler {
         public void log(String message) {
             messages.add(message);
             if(messages.size() >= bufferSize) {
-                for (String str :
-                        messages) {
+                for (String str : messages)
                     handler.log(str);
-                }
                 messages.clear();
             }
         }
