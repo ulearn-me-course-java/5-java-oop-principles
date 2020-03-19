@@ -1,0 +1,2 @@
+[ERROR] 2020.03.20 02:35:42 log1 - message1
+[ERROR] 2020.03.20 02:35:42 log1 - message2
