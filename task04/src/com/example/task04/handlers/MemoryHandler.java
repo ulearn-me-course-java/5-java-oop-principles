@@ -1,24 +1,27 @@
 package com.example.task04.handlers;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemoryHandler implements MessageHandler {
-    private LinkedList<String> messages = new LinkedList<>();
+    private MessageHandler proxy;
+    private List<String> messages = new ArrayList<>();
     private int size;
 
-    public MemoryHandler() {
-        this(1024);
+    public MemoryHandler(MessageHandler proxyHandler) {
+        this(proxyHandler, 1024);
     }
 
-    public MemoryHandler(int size) {
+    public MemoryHandler(MessageHandler proxyHandler, int size) {
+        proxy = proxyHandler;
         this.size = size;
     }
 
     @Override
     public void handle(String message) {
         if (messages.size() >= size) {
-            messages.removeFirst();
+            messages.forEach(proxy::handle);
+            messages.clear();
         }
 
         messages.add(message);

@@ -8,7 +8,7 @@ public class Task04Main {
         Logger logger = new Logger("default");
 
         // logger.handleWith(new ConsoleHandler());
-        // logger.handleWith(new MemoryHandler());
+        // logger.handleWith(new MemoryHandler(new ConsoleHandler()));
         // logger.handleWith(new FileHandler());
         logger.handleWith(new RotationFileHandler(1, ChronoUnit.MINUTES));
 

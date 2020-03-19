@@ -11,10 +11,17 @@ public class FileHandler implements MessageHandler {
     private PrintWriter writer;
 
     public FileHandler() {
-        setFile(null);
+        this(null);
     }
 
     public FileHandler(String filename) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (writer != null) {
+                writer.flush();
+                writer.close();
+            }
+        }));
+
         setFile(filename);
     }
 
@@ -34,6 +41,11 @@ public class FileHandler implements MessageHandler {
             if (!file.exists()) {
                 //noinspection ResultOfMethodCallIgnored
                 file.createNewFile();
+            }
+
+            if (writer != null) {
+                writer.flush();
+                writer.close();
             }
 
             writer = new PrintWriter(new FileWriter(file, true), true);
