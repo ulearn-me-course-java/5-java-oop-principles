@@ -17,7 +17,8 @@ public class FileHandler implements MessageHandler {
             writer.append(message);
             writer.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println (e.toString());
+            System.out.println("Could not find file " + path);
         }
     }
 }

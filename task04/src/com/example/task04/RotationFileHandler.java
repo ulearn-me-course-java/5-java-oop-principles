@@ -18,11 +18,12 @@ public class RotationFileHandler implements MessageHandler {
         public void log(String message) {
             LocalDateTime now = LocalDateTime.now().truncatedTo(rotation);
 
-            try(FileWriter writer = new FileWriter(String.format("{0}{1}.txt", path, now.toString()), true)) {
+            try(FileWriter writer = new FileWriter(String.format("%s\\%s.txt", path, now.toString()), true)) {
                 writer.append(message);
                 writer.flush();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println (e.toString());
+                System.out.println("Could not find file " + String.format("%s\\%s.txt", path, now.toString()));
             }
         }
     }
