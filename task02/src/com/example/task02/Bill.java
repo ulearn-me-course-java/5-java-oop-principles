@@ -9,6 +9,7 @@ import java.util.List;
 public class Bill {
     private List<BillItem> items = new ArrayList<>();
 
+
     /**
      * Добавляет товар в корзину
      *
