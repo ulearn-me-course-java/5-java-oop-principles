@@ -1,15 +1,13 @@
 package com.example.task03;
 
-import java.math.BigDecimal;
-
 /**
- * Интервал в миллисекундах
+ * Интервал в часах
  */
-public class Milliseconds implements TimeUnit
+public class Hours implements TimeUnit
 {
     private final long amount;
 
-    public Milliseconds(long amount)
+    public Hours(long amount)
     {
         this.amount = amount;
     }
@@ -17,25 +15,24 @@ public class Milliseconds implements TimeUnit
     @Override
     public long toMillis()
     {
-        return amount;
+        return amount * 360 * 1000;
     }
 
     @Override
     public long toSeconds()
     {
-
-        return Math.round(amount / 1000.0);
+        return amount * 360;
     }
 
     @Override
     public long toMinutes()
     {
-        return Math.round(amount / 60000.0);
+        return amount * 60;
     }
 
     @Override
     public long toHours()
     {
-        return Math.round(amount / 360000.0);
+        return amount;
     }
 }
