@@ -41,7 +41,7 @@ public class Logger {
     private void log(Level level, String message) {
         if (!(level.ordinal() >= this.level.ordinal())) return;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
-        System.out.println(String.format("[%s] %s %s - %s", level, dateFormat.format(new Date()), name, message));
+        System.out.printf("[%s] %s %s - %s%n", level, dateFormat.format(new Date()), name, message);
     }
 
     private void log(Level level, String formattedMessage, Object... args) {
