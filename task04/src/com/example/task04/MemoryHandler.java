@@ -2,24 +2,24 @@ package com.example.task04;
 
 public class MemoryHandler implements MessageHandler{
 
-    Logger logger;
+    MyLogger myLogger;
     MessageHandler mh;
 
 
     public MemoryHandler(MessageHandler mh){
-        this.logger = Logger.getLogger("MemoryHandlerLogger");
+        this.myLogger = MyLogger.getLogger("MemoryHandlerLogger");
         this.mh = mh;
     }
 
     @Override
     public void log(Level level, String string) {
-        logger.log(level, string);
+        myLogger.log(level, string);
     }
 
     public void write() {
-        for(Log log : logger.getLogs()) {
+        for(Log log : myLogger.getLogs()) {
             mh.log(log.level, log.message);
         }
-        logger.eraseLogs();
+        myLogger.eraseLogs();
     }
 }

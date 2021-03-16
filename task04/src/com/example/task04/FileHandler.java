@@ -8,17 +8,17 @@ import java.nio.file.StandardOpenOption;
 
 public class FileHandler implements MessageHandler{
     private Path filePath;
-    private Logger logger;
+    private MyLogger myLogger;
 
     public FileHandler(String filePath){
-        this.logger = Logger.getLogger("FileHandlerLogger");
+        this.myLogger = MyLogger.getLogger("FileHandlerLogger");
         this.filePath = Paths.get(filePath);
     }
 
     @Override
     public void log(Level level, String string) {
-        logger.log(level, string);
-        String text = logger.getLogs().get(logger.getLogs().size() - 1).toString();
+        myLogger.log(level, string);
+        String text = myLogger.getLogs().get(myLogger.getLogs().size() - 1).toString();
         try {
             if(!Files.exists(filePath))
                 Files.createFile(filePath);

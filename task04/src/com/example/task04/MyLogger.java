@@ -1,11 +1,9 @@
 package com.example.task04;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
-public class Logger {
-    public static Map<String, Logger> Logger = new HashMap<>();
+public class MyLogger {
+    public static Map<String, MyLogger> Logger = new HashMap<>();
 
     private String className;
     private List<Log> logs = new ArrayList<>();
@@ -23,7 +21,7 @@ public class Logger {
         logs = new ArrayList<>();
     }
 
-    private Logger(String className){
+    private MyLogger(String className){
         this.className = className;
     }
 
@@ -39,9 +37,9 @@ public class Logger {
         return currentLevel.toString();
     }
 
-    public static Logger getLogger(String name){
+    public static MyLogger getLogger(String name){
         if(!Logger.containsKey(name))
-            Logger.put(name, new Logger(name));
+            Logger.put(name, new MyLogger(name));
         return Logger.get(name);
     }
 

@@ -1,21 +1,17 @@
 package com.example.task04;
 
-import jdk.jfr.Period;
-import jdk.jfr.Timespan;
-
-import java.io.File;
 import java.util.Date;
 
 public class RotationFileHandler implements MessageHandler{
 
-    private Logger logger;
+    private MyLogger myLogger;
     private long timeSpan;
     private Date lastWrite;
     private String path;
 
 
     public RotationFileHandler(){
-        this.logger = Logger.getLogger("RotationHandlerLogger");
+        this.myLogger = MyLogger.getLogger("RotationHandlerLogger");
         timeSpan = 1000 * 60 * 60;
         lastWrite = new Date();
         path = lastWrite.toString();
