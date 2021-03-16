@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Logger {
-    private Level level;
+    private Level level = Level.INFO;
     private String name;
     private static HashMap<String, Logger> loggers = new HashMap<>();
 
