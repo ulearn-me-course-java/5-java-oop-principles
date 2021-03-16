@@ -1,6 +1,7 @@
 package com.example.task02;
 
 public class DiscountBill extends Bill {
+
     private final int discount; //as a percentage
 
     public int getDiscount() {
