@@ -28,10 +28,4 @@ public class DiscountBill extends Bill {
     public long getAbsoluteDiscount() {
         return super.getPrice() - this.getPrice();
     }
-
-    public String toString(){
-        StringBuilder builder = new StringBuilder("Without discount: ");
-        builder.append(super.getPrice()).append(" with discount: ").append(this.getPrice());
-        return builder.toString();
-    }
 }
