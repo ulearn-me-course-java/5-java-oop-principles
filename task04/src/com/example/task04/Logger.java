@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 package com.example.task04;
+=======
+package com.example.task01;
+>>>>>>> Stashed changes
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -100,4 +104,8 @@ public class Logger {
     public int hashCode() {
         return Objects.hash(loggerName);
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
