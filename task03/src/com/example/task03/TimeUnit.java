@@ -28,4 +28,7 @@ public interface TimeUnit {
      */
     long toMinutes();
 
+    default public long toHours(){
+        return Math.round ((double)toMinutes()/60);
+    }
 }

@@ -8,20 +8,26 @@ public class TimeUnitUtils {
     /**
      * Конвертирует интервал в секундах в интервал в миллисекундах
      *
-     * @param seconds интервал в секундах
+     * @param unit интервал в секундах
      * @return интервал в миллисекундах
      */
-    public static Milliseconds toMillis(Seconds seconds) {
-        return new Milliseconds(seconds.toMillis());
+    public static Milliseconds toMillis(TimeUnit unit) {
+        return new Milliseconds(unit.toMillis());
     }
 
     /**
-     * Конвертирует интервал в миллисекундах в интервал в секундах
+     * Конвертирует интервал в unit в интервал в секундах
      *
      * @param millis интервал в миллисекундах
      * @return интервал в секундах
      */
-    public static Seconds toSeconds(Milliseconds millis) {
-        return new Seconds(millis.toSeconds());
+    public static Seconds toSeconds(TimeUnit unit) {
+        return new Seconds(unit.toSeconds());
     }
+
+    public static Minutes toMinutes(TimeUnit unit) { return new Minutes(unit.toMinutes()); }
+
+    public static Hours toHoures(TimeUnit unit) { return new Hours(unit.toHours()); }
+
+
 }
