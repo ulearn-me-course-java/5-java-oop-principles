@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
+
 package com.example.task04;
-=======
-package com.example.task01;
->>>>>>> Stashed changes
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -19,36 +16,37 @@ public class Logger {
     private static ArrayList<Logger> logs = new ArrayList<Logger>();
     private String loggerName;
 
-    public Logger( Relevance l, String mes){
+    public Logger(Relevance l, String mes) {
 
         level = l;
         message = mes;
 
     }
-    public Logger(String n){
+
+    public Logger(String n) {
         loggerName = n;
     }
 
-    public void setLoggerName(String n){
+    public void setLoggerName(String n) {
         loggerName = n;
     }
 
-    public String getName(){
-        return loggerName ;
+    public String getName() {
+        return loggerName;
     }
 
 
-    public static Logger getLogger(String n){
+    public static Logger getLogger(String n) {
 
-        for ( Logger  l: logs){
-            if(l != null && l.loggerName ==n) return l;
+        for (Logger l : logs) {
+            if (l != null && l.loggerName == n) return l;
         }
         return new Logger(n);
     }
 
-    private void LogMessage(Relevance l, String mes){
-        logs.add(new Logger(l,mes));
-        if(level.ordinal() <= l.ordinal() ){
+    private void LogMessage(Relevance l, String mes) {
+        logs.add(new Logger(l, mes));
+        if (level.ordinal() <= l.ordinal()) {
             System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}",
                     l,
                     new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()),
@@ -58,54 +56,55 @@ public class Logger {
 
     }
 
-    public void setLevel(Relevance l){
+    public void setLevel(Relevance l) {
         level = l;
     }
-    public Relevance getLevel(){
+
+    public Relevance getLevel() {
         return level;
     }
 
-    public void debug(String s){
+    public void debug(String s) {
         LogMessage(Relevance.DEBUG, s);
     }
-    public void debug(String form,Object ... args){
-        debug(MessageFormat.format( form,args));
+
+    public void debug(String form, Object... args) {
+        debug(MessageFormat.format(form, args));
     }
 
-    public void error(String s){
+    public void error(String s) {
         LogMessage(Relevance.ERROR, s);
     }
-    public void error(String form,Object ... args){
-        error(MessageFormat.format(form,args));
+
+    public void error(String form, Object... args) {
+        error(MessageFormat.format(form, args));
     }
 
-    public void info(String s){
+    public void info(String s) {
         LogMessage(Relevance.INFO, s);
     }
-    public void info(String form,Object ... args){
-        info(MessageFormat.format(form,args));
+
+    public void info(String form, Object... args) {
+        info(MessageFormat.format(form, args));
     }
 
-    public void warning(String s){
+    public void warning(String s) {
         LogMessage(Relevance.WARNING, s);
     }
-    public void warning(String form,Object ... args){
-        warning(MessageFormat.format(form,args));
+
+    public void warning(String form, Object... args) {
+        warning(MessageFormat.format(form, args));
     }
 
     @Override
     public boolean equals(Object o) {
-        if ( !(o instanceof Logger)) return false;
+        if (!(o instanceof Logger)) return false;
         Logger log = (Logger) o;
-        return  this.loggerName.equals( ((Logger) o).loggerName) ;
+        return this.loggerName.equals(((Logger) o).loggerName);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(loggerName);
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

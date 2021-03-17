@@ -1,6 +1,5 @@
 package com.example.task04;
 
-<<<<<<< Updated upstream
 public enum Relevance{
     DEBUG,
     INFO,
@@ -8,7 +7,3 @@ public enum Relevance{
     ERROR
 
 }
-=======
-public enum Relevance {
-}
->>>>>>> Stashed changes
