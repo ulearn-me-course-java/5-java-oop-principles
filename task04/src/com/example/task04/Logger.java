@@ -1,14 +1,15 @@
 package com.example.task04;
 
-import java.util.ArrayList;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
 public class Logger {
+
     private static HashMap<String, Logger> loggers = new HashMap<>();
-    private final String name;
     private ArrayList<MessageHandler> handlers = new ArrayList<>();
+    private final String name;
     private LogLevel level = LogLevel.INFO;
 
     public Logger(String name, LogLevel level) {
@@ -18,6 +19,10 @@ public class Logger {
 
     public Logger(String name) {
         this.name = name;
+    }
+
+    public void addHandler(MessageHandler handler){
+        handlers.add(handler);
     }
 
     public static Logger getLogger(String name) {
@@ -37,16 +42,21 @@ public class Logger {
     }
 
     private void log(LogLevel level, String message) {
-        writeMessage(level, message);
+        for (MessageHandler handler : handlers) {
+            String logMess = writeMessage(level, message);
+            if (logMess != null)
+                handler.log(logMess);
+        }
     }
 
     private void log(LogLevel level, String message, Object... params) {
         writeMessage(level, String.format(message, params));
     }
 
-    private void writeMessage(LogLevel level, String message) {
+    private String writeMessage(LogLevel level, String message) {
         if (level.ordinal() >= this.level.ordinal())
-            System.out.println(String.format("[%s] %s %s - %s", level, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()), name, message));
+            return String.format("[%s] %s %s - %s", level, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()), name, message);
+        return null;
     }
 
     public void error(String message) {
@@ -80,4 +90,5 @@ public class Logger {
     public void debug(String message, Object... params) {
         warning(String.format(message, params));
     }
+
 }
