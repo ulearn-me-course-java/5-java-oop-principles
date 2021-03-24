@@ -89,4 +89,5 @@ public class Logger {
         System.out.println(String.format("[%s] %s %s %s - %s",
                 level, date.format(dateNow), time.format(dateNow), name, String.format(pattern, args)));
     }
+
 }
