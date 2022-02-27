@@ -5,13 +5,6 @@ import org.junit.Test;
 
 public class Tests {
 
-    /**
-     * Проверяет ожидаемое значение интервала в различных единицах с реальными
-     * @param timeUnit временной интервал
-     * @param expectedMillis ожидаемое количество миллисекунд
-     * @param expectedSeconds ожидаемое количество секунд
-     * @param expectedMinutes ожидаемое количество минут
-     */
     private void testTimeUnit(TimeUnit timeUnit, long expectedMillis, long expectedSeconds, long expectedMinutes) {
         long actualMillis = timeUnit.toMillis();
         long actualSeconds = timeUnit.toSeconds();
