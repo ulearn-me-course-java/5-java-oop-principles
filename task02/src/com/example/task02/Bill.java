@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Счет к оплате
  */
-public class Bill {
+public class    Bill {
     private List<BillItem> items = new ArrayList<>();
 
     /**
