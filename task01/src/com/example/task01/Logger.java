@@ -1,9 +1,7 @@
 package com.example.task01;
 
-import java.sql.Time;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Logger {
     /**
@@ -11,14 +9,14 @@ public class Logger {
      * с помощью
      * @see #getLogger(String)
      */
-    private static Map<String, Logger> map = new HashMap<>();
+    private static final Map<String, Logger> map = new HashMap<>();
 
     /**
      * <p>Поля хранящие информация о логе</p>
      */
     private final String name;
     private final Important important;
-    private final String message;
+    private String message;
     private final Date date;
 
     /**
@@ -49,4 +47,60 @@ public class Logger {
     public String toString() {
         return String.format("[%s] %tF %<tT %s - %s", important, date, name, message);
     }
+
+    private static Important importantFilter = Important.values()[0];
+    public static void setImportantFilter(Important imp){ importantFilter = imp; }
+    public static Important getImportantFilter() { return importantFilter; }
+    public static List<String> getLogs(){
+        return map.entrySet().stream().filter(x -> x.getValue().important.ordinal() > importantFilter.ordinal())
+                .map(x -> x.getValue().toString()).collect(Collectors.toList());
+    }
+
+
+    /**
+     * <p>Методы для задания<p/>
+     */
+    public static void debug(String message){
+        map.entrySet().stream().filter(x -> x.getValue().important.compareTo(Important.DEBUG) == 0)
+                .forEach(x -> x.getValue().message = message);
+    }
+    public static void debug(String message, Object... args){
+        debug(String.format(message, args));
+    }
+
+    public static void info(String message){
+        map.entrySet().stream().filter(x -> x.getValue().important.compareTo(Important.INFO) == 0)
+                .forEach(x -> x.getValue().message = message);
+    }
+    public static void info(String message, Object... args){
+        info(String.format(message, args));
+    }
+
+    public static void warning(String message){
+        map.entrySet().stream().filter(x -> x.getValue().important.compareTo(Important.WARNING) == 0)
+                .forEach(x -> x.getValue().message = message);
+    }
+    public static void warning(String message, Object... args){
+        warning(String.format(message, args));
+    }
+
+    public static void error(String message){
+        map.entrySet().stream().filter(x -> x.getValue().important.compareTo(Important.ERROR) == 0)
+                .forEach(x -> x.getValue().message = message);
+    }
+    public static void error(String message, Object... args){
+        error(String.format(message, args));
+    }
+
+    /**
+     * <p>Еще что-то</p>
+     */
+    public static void log(Important imp, String message){
+        map.entrySet().stream().filter(x -> x.getValue().important.compareTo(imp) == 0)
+                .forEach(x -> x.getValue().message = message);
+    }
+    public static void log(Important imp, String message, Object... args){
+        log(imp, String.format(message, args));
+    }
+
 }
