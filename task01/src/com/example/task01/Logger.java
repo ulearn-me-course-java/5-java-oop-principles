@@ -12,9 +12,10 @@ public class Logger {
     private static final Map<String, Logger> map = new HashMap<>();
 
     /**
-     * <p>Поля хранящие информация о логе</p>
+     * <p>Поля хранящие информация о логе, их геттеры</p>
      */
     private final String name;
+    public String getName() { return name; }
     private final Important important;
     private String message;
     private final Date date;
@@ -39,7 +40,7 @@ public class Logger {
      * @param name
      * @return Лог, который имеет имя name
      */
-    public Logger getLogger(String name){
+    public static Logger getLogger(String name){
         return map.get(name);
     }
 
@@ -48,9 +49,16 @@ public class Logger {
         return String.format("[%s] %tF %<tT %s - %s", important, date, name, message);
     }
 
+    /*
+    @Override
+    public String toString() {
+        return String.format("[%s] %s %s - %s", important, date.toLocaleString(), name, message);
+    }
+     */
+
     private static Important importantFilter = Important.values()[0];
-    public static void setImportantFilter(Important imp){ importantFilter = imp; }
-    public static Important getImportantFilter() { return importantFilter; }
+    public static void setLevel(Important imp){ importantFilter = imp; }
+    public static Important getLevel() { return importantFilter; }
     public static List<String> getLogs(){
         return map.entrySet().stream().filter(x -> x.getValue().important.ordinal() > importantFilter.ordinal())
                 .map(x -> x.getValue().toString()).collect(Collectors.toList());

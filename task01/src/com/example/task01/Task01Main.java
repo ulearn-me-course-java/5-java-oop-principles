@@ -1,11 +1,5 @@
 package com.example.task01;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Task01Main {
     public static void main(String[] args) {
         Logger log;
@@ -15,7 +9,7 @@ public class Task01Main {
             log = new Logger("name" + i, Important.WARNING, "mess");
         for(int i = 20; i < 30; i++)
             log = new Logger("name" + i, Important.ERROR, "mess");
-        Logger.setImportantFilter(Important.INFO);
+        Logger.setLevel(Important.INFO);
         System.out.println(Logger.getLogs());
 
         System.out.println();
