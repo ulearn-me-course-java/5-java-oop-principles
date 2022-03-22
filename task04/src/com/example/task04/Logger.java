@@ -9,6 +9,7 @@ public class Logger {
     private SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
     private LogLevel level;
     private String name;
+    private MessageHandler handler = new ConsoleHandler();
 
     private static HashMap<String, Logger> logs = new HashMap<>();
 
@@ -28,6 +29,10 @@ public class Logger {
         this.level = level;
     }
 
+    public void setHandler(MessageHandler handler) {
+        this.handler = handler;
+    }
+
     public LogLevel getLevel() {
         return level;
     }
@@ -44,7 +49,7 @@ public class Logger {
     }
 
     private void log(LogLevel level, String message){
-        log(level, message);
+        log(level, message, new Object[0]);
     }
 
     public void debug(String message){
