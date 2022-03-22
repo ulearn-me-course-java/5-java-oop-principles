@@ -63,3 +63,25 @@ public class Bill {
         }
     }
 }
+class DiscountBill extends Bill{
+
+    private long discount;
+    public DiscountBill(long discount){
+
+
+        this.discount = discount;
+    }
+    @Override
+    public long getPrice() {
+        return super.getPrice() - this.discount;
+    }
+    public double getDiscount(){
+        return (double)this.discount / ((double)super.getPrice() / 100);
+    }
+    public long getAbsolute(){
+        return super.getPrice() - this.getPrice();
+    }
+
+
+
+}
