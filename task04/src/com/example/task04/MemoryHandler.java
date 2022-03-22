@@ -18,11 +18,15 @@ public class MemoryHandler implements MessageHandler {
     public void log(String msg) {
         messages.add(msg);
         if (maxSize >= messages.size()) {
-            for (MessageHandler handler : handlers) {
-                for (String message : messages)
-                    handler.log(message);
-                messages.clear();
-            }
+            append();
+        }
+    }
+
+    public void append() {
+        for (MessageHandler handler : handlers) {
+            for (String message : messages)
+                handler.log(message);
+            messages.clear();
         }
     }
 }
