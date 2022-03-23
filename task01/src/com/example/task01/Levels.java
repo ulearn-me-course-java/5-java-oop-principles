@@ -5,4 +5,5 @@ public enum Levels {
     INFO,
     WARNING,
     ERROR
+
 }

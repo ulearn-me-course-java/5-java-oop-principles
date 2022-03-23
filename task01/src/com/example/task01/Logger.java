@@ -78,4 +78,5 @@ public class Logger {
                     lvl, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(date), name, message));
         }
     }
+
 }

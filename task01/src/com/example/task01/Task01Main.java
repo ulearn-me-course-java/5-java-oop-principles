@@ -12,4 +12,5 @@ public class Task01Main {
         log1.setLevel(Levels.DEBUG);
         log1.showLogMessage(Levels.DEBUG, "DEBUG!");
     }
+
 }
