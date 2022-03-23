@@ -11,11 +11,11 @@ public class Logger {
     private final String name;
     private static HashMap<String, Logger> loggers = new HashMap<>();
 
-    public Logger(String name){
+    public Logger(String name) {
         this(name, LEVEL.DEBUG);
     }
 
-    public Logger(String name, LEVEL level){
+    public Logger(String name, LEVEL level) {
         this.name = name;
         this.level = level;
     }
