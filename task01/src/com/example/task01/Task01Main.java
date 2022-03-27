@@ -14,7 +14,7 @@ public class Task01Main {
         logger1.log(ImportanceLevel.DEBUG, "testing logger");
         //logger1.setLevel(ImportanceLevel);
         Object[] arguments = {1, "asd"};
-        logger1.log(ImportanceLevel.WARNING, new MessageFormat("message pattern {0} {1}"), arguments);
-        logger1.error(new MessageFormat("message pattern {0} {1}"), arguments);
+        logger1.log(ImportanceLevel.WARNING, "message pattern {0} {1}", arguments);
+        logger1.error("test message");  //[ERROR] YYYY.MM.DD hh:mm:ss test - test message
     }
 }
