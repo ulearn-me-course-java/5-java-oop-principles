@@ -1,0 +1,28 @@
+test
+test2
+[DEBUG] 2022.03.28 20:42:59 logger1 - test1
+[WARNING] 2022.03.28 20:42:59 logger1 - test2
+test
+test2
+[DEBUG] 2022.03.28 20:50:17 logger1 - test1
+[WARNING] 2022.03.28 20:50:17 logger1 - test2
+test
+test2
+[DEBUG] 2022.03.28 20:51:21 logger1 - test1
+[WARNING] 2022.03.28 20:51:21 logger1 - test2
+test
+test2
+[DEBUG] 2022.03.28 20:51:34 logger1 - test1
+[WARNING] 2022.03.28 20:51:34 logger1 - test2
+test
+test2
+[DEBUG] 2022.03.28 20:53:15 logger1 - test1
+[WARNING] 2022.03.28 20:53:15 logger1 - test2
+test
+test2
+[DEBUG] 2022.03.28 20:54:27 logger1 - test1
+[WARNING] 2022.03.28 20:54:27 logger1 - test2
+test
+test2
+[DEBUG] 2022.03.28 20:55:28 logger1 - test1
+[WARNING] 2022.03.28 20:55:28 logger1 - test2
