@@ -30,13 +30,6 @@ public class Logger {
         return name;
     }
 
-    public enum LEVEL {
-        DEBUG,
-        INFO,
-        WARNING,
-        ERROR
-    }
-
     public void debug(String text) {
         log(LEVEL.DEBUG, text);
     }
