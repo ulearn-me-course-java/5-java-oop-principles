@@ -28,4 +28,9 @@ public interface TimeUnit {
      */
     long toMinutes();
 
+    /**
+     * Возвращает количество часов в интервале
+     * @return
+     */
+    long getHours();
 }
