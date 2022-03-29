@@ -53,13 +53,31 @@ public class Bill {
         return sb.toString();
     }
 
-    private static class BillItem {
+    private static class BillItem extends Bill{
         final Item item;
         int amount;
+        private int discount;
 
         BillItem(Item item, int amount) {
             this.item = item;
             this.amount = amount;
+        }
+
+        @Override
+        public long getPrice(){
+            return super.getPrice() * 100 / discount;
+        }
+
+        public int getDiscount(){
+            return discount;
+        }
+
+        public void setDiscount(int discount){
+            this.discount = discount;
+        }
+
+        public long getAbsoluteDiscount(){
+            return super.getPrice() - getPrice();
         }
     }
 }
