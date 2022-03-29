@@ -10,17 +10,17 @@ public class Hours implements TimeUnit {
 
     @Override
     public long toMillis() {
-        return Math.round(amount * 60f * 60f * 1000f);
+        return amount * 60 * 60 * 1000;
     }
 
     @Override
     public long toSeconds() {
-        return Math.round(amount * 60f * 60f);
+        return amount * 60 * 60;
     }
 
     @Override
     public long toMinutes() {
-        return Math.round(amount * 60f);
+        return amount * 60;
     }
 
     @Override
