@@ -5,6 +5,7 @@ package com.example.task03;
  */
 public interface TimeUnit {
 
+    long toHours();
     /**
      * Возвращает продолжительность текущего интервала, пересчитанного в миллисекундах.
      *
