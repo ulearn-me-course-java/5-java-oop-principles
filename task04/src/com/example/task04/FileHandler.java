@@ -1,20 +1,23 @@
 package com.example.task04;
 
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Path;
 
-public class FileHandler implements MessageHandler{
-    private String path;
+public class FileHandler implements MessageHandler {
+    private final Path path;
 
-    public FileHandler(String path) {
+    public FileHandler(Path path) {
         this.path = path;
     }
 
     @Override
     public void log(String text) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("path");
-            fileOutputStream.write(text.getBytes());
+            FileWriter fw = new FileWriter(path.toString(), true);
+            fw.write(text + "\n");
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

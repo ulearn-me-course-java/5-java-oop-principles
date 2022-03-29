@@ -2,14 +2,15 @@ package com.example.task04;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
 public class Logger {
     private LEVEL level;
-    private Date date;
     private final String name;
-    private static HashMap<String, Logger> loggers = new HashMap<>();
+    private final static HashMap<String, Logger> loggers = new HashMap<>();
+    private final ArrayList<MessageHandler> handlers = new ArrayList<>();
 
     public Logger(String name) {
         this(name, LEVEL.DEBUG);
@@ -70,15 +71,28 @@ public class Logger {
         return level;
     }
 
+    public void addHandler(MessageHandler handler) {
+        handlers.add(handler);
+    }
+
     public void log(LEVEL level, String text) {
-        date = new Date();
-        if (level.ordinal() >= this.level.ordinal())
-            System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}", level, new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(date), name, text));
+        log(level, text, new Object[0]);
     }
 
     public void log(LEVEL level, String text, Object... objects) {
-        date = new Date();
-        if (level.ordinal() >= this.level.ordinal())
-            System.out.println(MessageFormat.format(text, objects));
+        if (level.ordinal() >= this.level.ordinal()) {
+            String message = messageToLog(level, text, objects);
+            for (MessageHandler handler : handlers) {
+                handler.log(message);
+            }
+        }
+    }
+
+    private String messageToLog(LEVEL level, String text, Object... objects) {
+        Date date = new Date();
+        if (objects.length == 0)
+            return MessageFormat.format("[{0}] {1} {2} - {3}", level, new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(date), name, text);
+        else
+            return MessageFormat.format(text, objects);
     }
 }
