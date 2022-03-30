@@ -10,7 +10,7 @@ public class Task04Main
         Logger logger = new Logger("Logger", Level.Debug);
         logger.getHandlers().add(new ConsoleHandler());
         logger.getHandlers().add(new FileHandler("/home/Nanoster/testJava.txt"));
-        logger.getHandlers().add(new RotationFileHandler(Calendar.HOUR, "/home/Nanoster/"));
+        logger.getHandlers().add(new RotationFileHandler(Calendar.HOUR, "/home/Nanoster/Java"));
 
         MemoryHandler handler = new MemoryHandler();
         handler.getHandlers().add(new ConsoleHandler());

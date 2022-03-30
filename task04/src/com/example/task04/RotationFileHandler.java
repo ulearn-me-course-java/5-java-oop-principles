@@ -14,7 +14,7 @@ public class RotationFileHandler implements MessageHandler
     {
         this.calendarConst = calendarConst;
         this.baseDirectory = new File(baseDirectory);
-        if (!this.baseDirectory.exists()) this.baseDirectory.createNewFile();
+        if (!this.baseDirectory.exists()) this.baseDirectory.mkdir();
     }
 
     public int getCalendarConst()
@@ -30,14 +30,23 @@ public class RotationFileHandler implements MessageHandler
     @Override
     public void Handle(String message)
     {
+        File[] files = baseDirectory.listFiles();
+        Optional<File> neededFile;
         FileWriter writer;
-        Optional<File> neededFile = Arrays.stream(baseDirectory.listFiles()).filter(file -> Calendar.getInstance(TimeZone.getDefault()).get(calendarConst) == Integer.valueOf(file.getName())).findFirst();
+        if (files == null) neededFile = null;
+        else
+            neededFile = Arrays.stream(files).filter(file -> String.valueOf(Calendar.getInstance(TimeZone.getDefault()).get(calendarConst)) + ".txt" == file.getName()).findFirst();
         try
         {
-            if (neededFile != null) writer = new FileWriter(neededFile.get());
+            if (!neededFile.isEmpty()) writer = new FileWriter(neededFile.get(), true);
             else
-                writer = new FileWriter(baseDirectory + String.valueOf(Calendar.getInstance(TimeZone.getDefault()).get(calendarConst)));
+            {
+                File file = new File(baseDirectory + "/" + String.valueOf(Calendar.getInstance(TimeZone.getDefault()).get(calendarConst)) + ".txt");
+                file.createNewFile();
+                writer = new FileWriter(file, true);
+            }
             writer.write(message);
+            writer.flush();
         }
         catch (IOException e)
         {

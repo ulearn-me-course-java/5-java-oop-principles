@@ -21,6 +21,7 @@ public class FileHandler implements MessageHandler
         try
         {
             writer.write(message);
+            writer.flush();
         }
         catch (IOException e)
         {
