@@ -45,14 +45,14 @@ public class Logger {
 
     }
 
-    private void showLogMeassage(ErrorLevel level, String message){
+    private void showLogMessage(ErrorLevel level, String message){
         if(level.ordinal() >= this.level.ordinal())
             System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}",
                     level, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()), name, message));
     }
 
     private void getLog(ErrorLevel level, String message){
-        showLogMeassage(level, message);
+        showLogMessage(level, message);
     }
 
     public void debug(String message){
