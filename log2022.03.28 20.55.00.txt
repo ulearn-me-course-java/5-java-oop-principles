@@ -1,0 +1,4 @@
+[DEBUG] 2022.03.28 20:55:28 logger1 - test1
+[DEBUG] 2022.03.28 20:55:28 logger1 - test2
+[DEBUG] 2022.03.28 20:55:30 logger1 - test3
+[DEBUG] 2022.03.28 20:55:30 logger1 - test4
