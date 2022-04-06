@@ -19,8 +19,14 @@ public class Logger {
     private MessageLevel level;
     private static HashMap<String, Logger> AllLogs = new HashMap<>();
 
+    public static Logger newLogger(String name){
+        if(!AllLogs.containsKey(name)){
+            return new Logger(name);
+        }
+        return null;
+    }
 
-    public Logger(String name){
+    private Logger(String name){
         this.name = name;
         this.date = new Date();
         this.level = MessageLevel.DEBUG;

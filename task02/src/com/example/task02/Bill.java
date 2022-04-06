@@ -44,40 +44,23 @@ public class Bill {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Счет к оплате\n");
+        StringBuilder sb = new StringBuilder("Invoice for payment\n");
         for(BillItem item : items) {
             sb.append(item.item.getName()).append('(').append(item.amount).append(')');
             sb.append('\n');
         }
-        sb.append("Сумма к оплате: ").append(getPrice());
+        sb.append("Amount payable: ").append(getPrice());
         return sb.toString();
     }
 
     private static class BillItem extends Bill{
         final Item item;
         int amount;
-        private int discount;
 
         BillItem(Item item, int amount) {
             this.item = item;
             this.amount = amount;
         }
 
-        @Override
-        public long getPrice(){
-            return super.getPrice() * 100 / discount;
-        }
-
-        public int getDiscount(){
-            return discount;
-        }
-
-        public void setDiscount(int discount){
-            this.discount = discount;
-        }
-
-        public long getAbsoluteDiscount(){
-            return super.getPrice() - getPrice();
-        }
     }
 }
