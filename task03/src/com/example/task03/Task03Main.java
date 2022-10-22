@@ -10,5 +10,7 @@ public class Task03Main {
         System.out.println(String.format("Milliseconds: %d", unit.toMillis()));
         System.out.println(String.format("Seconds:      %d", unit.toSeconds()));
         System.out.println(String.format("Minutes:      %d", unit.toMinutes()));
+
+        System.out.println(Math.round((double)(1500 / 1000)));
     }
 }
