@@ -10,7 +10,8 @@ public class Task02Main {
     private static final Item ITEM6 = new Item("product 6", 60);
 
     public static void main(String[] args) {
-        Bill bill = new Bill();
+        DiscountBill bill = new DiscountBill();
+        bill.setDiscount(100);
         bill.add(ITEM1, 10);
         bill.add(ITEM3, 3);
         bill.add(ITEM6, 1);

@@ -7,7 +7,7 @@ import java.util.List;
  * Счет к оплате
  */
 public class Bill {
-    private List<BillItem> items = new ArrayList<>();
+    protected List<BillItem> items = new ArrayList<>();
 
     /**
      * Добавляет товар в корзину
@@ -53,7 +53,7 @@ public class Bill {
         return sb.toString();
     }
 
-    private static class BillItem {
+    protected static class BillItem {
         final Item item;
         int amount;
 
