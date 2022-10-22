@@ -2,9 +2,9 @@ package com.example.task03;
 
 public class Minutes implements TimeUnit {
 
+    private final long amount;
     public Minutes(long amount) {
-        // TODO: реализовать
-        throw new UnsupportedOperationException();
+        this.amount = amount;
     }
 
     @Override
@@ -21,7 +21,11 @@ public class Minutes implements TimeUnit {
 
     @Override
     public long toMinutes() {
-        // TODO: реализовать
-        throw new UnsupportedOperationException();
+        return amount;
+    }
+
+    @Override
+    public long toHours() {
+        return this.amount / 60;
     }
 }
