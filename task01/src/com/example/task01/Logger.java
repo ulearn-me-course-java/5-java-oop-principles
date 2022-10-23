@@ -8,11 +8,10 @@ import java.util.Map;
 public class Logger {
     private final String _name;
     private LogSeverityLvl _currentLvl;
-    private final Date _date;
     private static final Map<String, Logger> map = new HashMap<>();
 
     public Logger(String name) {
-        _name = name; _currentLvl = LogSeverityLvl.DEBUG; _date = new Date();
+        _name = name; _currentLvl = LogSeverityLvl.DEBUG;
     }
 
     public String getName() { return _name; }
@@ -64,10 +63,9 @@ public class Logger {
     private void printMessage(LogSeverityLvl lvl, String message) {
         if(_currentLvl.ordinal() > lvl.ordinal()) return;
 
-        System.out.printf("[%s] %s %s %s - %s%n",
+        System.out.printf("[%s] %s %s - %s%n",
                 lvl,
-                new SimpleDateFormat("yyyy.MM.dd").format(_date),
-                new SimpleDateFormat("hh:mm:ss").format(_date),
+                new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(new Date()),
                 getName(),
                 message
         );
