@@ -1,5 +1,6 @@
 package com.example.task01;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,12 +17,11 @@ public class Logger {
     private Level level;
     private static HashMap<String, Logger> loggers = new HashMap<>();
 
-    public Logger() {
-    }
     public Logger(String name) {
         if (name == null)
             throw new IllegalArgumentException("Имя не может быть null");
         else {
+            loggers.put(name, this);
             this.name = name;
             level = Level.DEBUG;
         };
@@ -49,35 +49,33 @@ public class Logger {
     public void debug(String message) {
         log(Level.DEBUG, message);
     }
-    public void debug(String message, String... f) {
-        log(Level.DEBUG, message, f);
+    public void debug(String message, Object... params) {
+        log(Level.DEBUG, message, params);
     }
 
     public void info(String message) {
         log(Level.INFO, message);
     }
-    public void info(String message, String... f) {
-        log(Level.INFO, message, f);
+    public void info(String message, Object... params) {
+        log(Level.INFO, message, params);
     }
 
     public void warning(String message) {
         log(Level.WARNING, message);
     }
-    public void warning(String message, String... f) {
-        log(Level.WARNING, message, f);
-    }
+    public void warning(String message, Object... params) { log(Level.WARNING, message, params); }
 
     public void error(String message) {
         log(Level.ERROR, message);
     }
-    public void error(String message, String... f) {
-        log(Level.ERROR, message, f);
+    public void error(String message, Object... params) {
+        log(Level.ERROR, message,params);
     }
-    public void log(Level importanceLevel, String message) {
-        if (importanceLevel.ordinal() >= level.ordinal()) {
-            SimpleDateFormat formatForDate = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss ");
-            System.out.printf("[%s] %s %s - %s%n", level, formatForDate.format(new Date()), name, message);
-        }
+
+    public void log(Level level, String message){
+        if(level.ordinal() >= this.level.ordinal())
+            System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}",
+                    level, new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()), name, message));
     }
     public void log(Level importanceLevel, String template, Object... params) {
         log(importanceLevel, String.format(template, params));
