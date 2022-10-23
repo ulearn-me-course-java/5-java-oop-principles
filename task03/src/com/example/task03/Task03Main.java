@@ -2,7 +2,7 @@ package com.example.task03;
 
 public class Task03Main {
     public static void main(String[] args) {
-        TimeUnit unit1 = new Seconds(1000);
+        TimeUnit unit1 = new Seconds(30);
         printTimeUnit(unit1);
     }
 
