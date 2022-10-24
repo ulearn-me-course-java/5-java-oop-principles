@@ -5,21 +5,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Logger{
     static ArrayList<Logger> loggers = new ArrayList<Logger>();
+    private final List<MessageHandler> loggerList = new ArrayList<>();
     private final String Name;
     private LogLevel Level;
 
-    public Logger(String name){
+    public Logger(String name) {
         Name = name;
         Level = LogLevel.INFO;
         loggers.add(this);
     }
-    public String getName(){
-        return Name;
-    }
 
+    public Logger(String name, MessageHandler... handlers) {
+        Name = name;
+        Level = LogLevel.INFO;
+        loggerList.addAll(Arrays.asList(handlers));
+    }
     public static Logger getLogger(String name){
         for (Logger logger: loggers){
             if (logger.getName() == name){
@@ -28,6 +32,9 @@ public class Logger{
         }
         loggers.add(new Logger(name));
         return loggers.get(loggers.size()-1);
+    }
+    public String getName(){
+        return Name;
     }
     public void setLevel(LogLevel level){
         Level = level;
