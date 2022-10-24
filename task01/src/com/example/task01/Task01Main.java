@@ -6,5 +6,6 @@ public class Task01Main {
         Logger logger1 = Logger.getLogger("test");
         Logger logger2 = Logger.getLogger("test");
         System.out.println(logger1 == logger2);
+        Logger Logger3 = new Logger("test");
     }
 }

@@ -15,7 +15,7 @@ public class Logger {
         Name = name;
         Level = LogLevel.INFO;
         loggers.add(this);
-       // setMessage();
+
     }
 
     public String getName(){

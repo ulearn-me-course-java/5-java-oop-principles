@@ -17,6 +17,7 @@ public class Logger{
         Name = name;
         Level = LogLevel.INFO;
         loggers.add(this);
+        loggerList.add(new ConsoleHandler());
     }
 
     public Logger(String name, MessageHandler... handlers) {
@@ -83,16 +84,22 @@ public class Logger{
     }
     private void printMessage(LogLevel level, String message) {
         if (level.ordinal() >= this.Level.ordinal()) {
-            System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}",
+            String logMessage = MessageFormat.format("[{0}] {1} {2} - {3}",
                     level,
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd hh:mm:ss")),
                     this.Name,
-                    message));
+                    message);
+            for (MessageHandler mh : loggerList){
+                mh.log(logMessage);
+            }
         }
     }
     private void printMessage(LogLevel level, String format, Object... elems) {
         if (level.ordinal() >= this.Level.ordinal() ) {
-            System.out.println(MessageFormat.format(format, elems));
+            String logMessage = MessageFormat.format(format, elems);
+            for (MessageHandler mh : loggerList){
+                mh.log(logMessage);
+            }
         }
     }
 }
