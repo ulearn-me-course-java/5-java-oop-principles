@@ -10,9 +10,6 @@ public class RotationFileHandler implements MessageHandler {
     private String fileName = "log";
     private ChronoUnit chronoUnit = ChronoUnit.HOURS;
 
-    public RotationFileHandler() {
-    }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }

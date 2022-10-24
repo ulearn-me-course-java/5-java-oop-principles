@@ -11,9 +11,6 @@ public class FileHandler implements MessageHandler{
         this.fileName = fileName;
     }
 
-    public FileHandler() {
-    }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -22,7 +19,7 @@ public class FileHandler implements MessageHandler{
         try(FileWriter fileWriter = new FileWriter(MessageFormat.format("{0}.txt",fileName), true)) {
             fileWriter.append(String.format("%s\n", message));
             fileWriter.flush();
-        }catch (Exception exception){
+        } catch (Exception exception){
             System.err.println(exception.getMessage());
         }
     }

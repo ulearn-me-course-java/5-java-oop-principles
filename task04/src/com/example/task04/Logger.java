@@ -45,43 +45,51 @@ public class Logger {
     }
 
     public void info(String message) {
+
         log(importanceLevel.INFO, message);
     }
 
     public void info(String message, Object... params) {
+
         log(importanceLevel.INFO, message, params);
     }
 
     public void debug(String message) {
+
         log(importanceLevel.DEBUG, message);
     }
 
     public void debug(String message, Object... params) {
+
         log(importanceLevel.DEBUG, message, params);
     }
 
     public void warning(String message) {
+
         log(importanceLevel.WARNING, message);
     }
 
     public void warning(String message, Object... params) {
+
         log(importanceLevel.WARNING, message, params);
     }
 
     public void error(String message) {
+
         log(importanceLevel.ERROR, message);
     }
 
     public void error(String message, Object... params) {
+
         log(importanceLevel.ERROR, message, params);
     }
 
     public void log(importanceLevel level, String message) {
-        logMassage(level, message);
+        logMessage(level, message);
     }
 
     public void log(importanceLevel level, String message, Object... params) {
-        logMassage(level, message, params);
+        logMessage(level, message, params);
     }
 
     private void logMessage(importanceLevel level, String message) {
