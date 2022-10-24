@@ -14,10 +14,12 @@ public class Item {
     }
 
     public String getName() {
+
         return name;
     }
 
     public long getPrice() {
+
         return price;
     }
 
