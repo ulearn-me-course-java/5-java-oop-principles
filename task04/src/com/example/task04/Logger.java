@@ -1,17 +1,8 @@
-package com.example.task01;
+package com.example.task04;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-
-public class Task01Main {
-    public static void main(String[] args) {
-        Logger logger = new Logger("test");
-        Logger logger1 = Logger.getLogger("test");
-        Logger logger2 = Logger.getLogger("test");
-        System.out.println(logger1 == logger2);
-    }
-}
 
 enum Levels {
     DEBUG, INFO, WARNING, ERROR
