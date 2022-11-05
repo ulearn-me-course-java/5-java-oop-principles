@@ -2,20 +2,24 @@ package com.example.task02;
 
 public class Task02Main {
 
-    private static final Item ITEM1 = new Item("Товар 1", 10);
-    private static final Item ITEM2 = new Item("Товар 2", 20);
-    private static final Item ITEM3 = new Item("Товар 3", 30);
-    private static final Item ITEM4 = new Item("Товар 4", 40);
-    private static final Item ITEM5 = new Item("Товар 5", 50);
-    private static final Item ITEM6 = new Item("Товар 6", 60);
+    private static final Item ITEM1 = new Item("ITEM 1", 10);
+    private static final Item ITEM2 = new Item("ITEM 2", 20);
+    private static final Item ITEM3 = new Item("ITEM 3", 30);
+    private static final Item ITEM4 = new Item("ITEM 4", 40);
+    private static final Item ITEM5 = new Item("ITEM 5", 50);
+    private static final Item ITEM6 = new Item("ITEM 6", 60);
 
     public static void main(String[] args) {
-        Bill bill = new Bill();
-        bill.add(ITEM1, 10);
-        bill.add(ITEM3, 3);
-        bill.add(ITEM6, 1);
-        System.out.println(bill);
-        bill.add(ITEM3, 3);
-        System.out.println(bill);
+        Bill bill1 = new Bill();
+        bill1.add(ITEM1, 10);
+        bill1.add(ITEM3, 3);
+        bill1.add(ITEM6, 1);
+        System.out.println(bill1);
+
+        DiscountBill bill2 = new DiscountBill(50);
+        bill2.add(ITEM1, 10);
+        bill2.add(ITEM3, 3);
+        bill2.add(ITEM6, 1);
+        System.out.println(bill2);
     }
 }
