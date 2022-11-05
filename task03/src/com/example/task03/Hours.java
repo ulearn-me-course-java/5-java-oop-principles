@@ -10,7 +10,7 @@ public class Hours implements TimeUnit{
 
     @Override
     public long toMillis() {
-        return  toSeconds() * 60;
+        return toSeconds() * 1000;
     }
 
     @Override

@@ -26,6 +26,6 @@ public class TimeUnitUtils {
     }
 
     public static Hours toMinutes(Seconds seconds){
-        return new Hours(seconds.toMinutes());
+        return new Hours(seconds.toHours());
     }
 }

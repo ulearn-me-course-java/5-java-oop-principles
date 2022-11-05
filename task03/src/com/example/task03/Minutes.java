@@ -9,14 +9,12 @@ public class Minutes implements TimeUnit {
 
     @Override
     public long toMillis() {
-        // TODO: реализовать
-        throw new UnsupportedOperationException();
+        return toSeconds() * 1000;
     }
 
     @Override
     public long toSeconds() {
-        // TODO: реализовать
-        throw new UnsupportedOperationException();
+        return amount * 60;
     }
 
     @Override
