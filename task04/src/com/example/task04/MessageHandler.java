@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface MessageHandler {
     void processMessage(String currentName, LogSeverityLvl lvl, String message);
-    void processMessage(String format, Object... params) throws IOException;
+    void processMessage(String format, Object... params);
 }

@@ -1,18 +1,17 @@
 package com.example.task04;
 
-import com.sun.istack.internal.NotNull;
-
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileHandler implements MessageHandler {
-    private final FileWriter _fileWriter;
+    private final PrintWriter _printWriter;
 
-    public FileHandler(@NotNull String fileName) {
+    public FileHandler(String fileName) {
         try {
-            _fileWriter = new FileWriter(fileName, true);
+            _printWriter = new PrintWriter(new FileWriter(fileName + ".txt"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -20,25 +19,19 @@ public class FileHandler implements MessageHandler {
 
     @Override
     public void processMessage(String currentName, LogSeverityLvl lvl, String message) {
-        try {
-            _fileWriter.write(String.format("[%s] %s %s - %s",
-                    lvl,
-                    new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(new Date()),
-                    currentName,
-                    message
-                    )
-            );
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        _printWriter.println(String.format("[%s] %s %s - %s",
+                lvl,
+                new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(new Date()),
+                currentName,
+                message
+                )
+        );
+        _printWriter.flush();
     }
 
     @Override
     public void processMessage(String format, Object... params) {
-        try {
-            _fileWriter.write(String.format(format, params));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        _printWriter.println(String.format(format, params));
+        _printWriter.flush();
     }
 }
