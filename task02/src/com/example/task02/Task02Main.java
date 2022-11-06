@@ -17,5 +17,15 @@ public class Task02Main {
         System.out.println(bill);
         bill.add(ITEM3, 3);
         System.out.println(bill);
+
+        DiscountBill discountBill = new DiscountBill(10);
+        System.out.printf("Со скидкой: %d%%\n", discountBill.getDiscount());
+        discountBill.add(ITEM1, 10);
+        discountBill.add(ITEM3, 3);
+        discountBill.add(ITEM6, 1);
+        System.out.println(discountBill);
+        discountBill.add(ITEM3, 3);
+        System.out.println(discountBill);
+        System.out.println("Скидка составила: " + discountBill.absoluteDiscount());
     }
 }
