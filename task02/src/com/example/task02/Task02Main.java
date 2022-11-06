@@ -10,12 +10,11 @@ public class Task02Main {
     private static final Item ITEM6 = new Item("Товар 6", 60);
 
     public static void main(String[] args) {
-        Bill bill = new Bill();
-        bill.add(ITEM1, 10);
-        bill.add(ITEM3, 3);
-        bill.add(ITEM6, 1);
-        System.out.println(bill);
-        bill.add(ITEM3, 3);
-        System.out.println(bill);
+        DiscountBill discount = new DiscountBill(25);
+        discount.add(ITEM2, 5);
+
+        System.out.println(discount.getPrice());
+        System.out.println(discount.getDiscountPercent());
+        System.out.println(discount.getValueOfDiscount());
     }
 }
