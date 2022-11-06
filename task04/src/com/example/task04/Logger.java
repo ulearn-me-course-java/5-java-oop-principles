@@ -14,6 +14,10 @@ public class Logger {
         _name = name; _currentLvl = LogSeverityLvl.DEBUG; handlers = new MessageHandler[] { new ConsoleHandler() };
     }
 
+    public Logger(String name, MessageHandler... handlers) {
+        _name = name; _currentLvl = LogSeverityLvl.DEBUG; this.handlers = handlers;
+    }
+
     public String getName() { return _name; }
 
     public void setHandlers(MessageHandler[] handlers) {
@@ -27,14 +31,6 @@ public class Logger {
     public void setLevel(LogSeverityLvl lvl) { _currentLvl = lvl; }
 
     public LogSeverityLvl getLevel() { return _currentLvl; }
-
-    public void log(LogSeverityLvl lvl, String message) {
-        printMessage(lvl, message);
-    }
-
-    public void log(LogSeverityLvl lvl, String format, Object... params) {
-        printMessage(lvl, format, handlers, params);
-    }
 
     public void debug(String message) {
         log(LogSeverityLvl.DEBUG, message);
@@ -68,18 +64,27 @@ public class Logger {
         log(LogSeverityLvl.ERROR, format, params);
     }
 
-    private void printMessage(LogSeverityLvl lvl, String message) {
+    public void log(LogSeverityLvl lvl, String message) {
         if(_currentLvl.ordinal() > lvl.ordinal()) return;
 
+        String str = String.format("[%s] %s %s - %s%n",
+                lvl,
+                new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(new Date()),
+                _name,
+                message
+        );
+
         for(MessageHandler handler : handlers)
-            handler.processMessage(_name, lvl, message);
+            handler.processMessage(str);
     }
 
-    private void printMessage(LogSeverityLvl lvl, String format, Object... params) {
+    public void log(LogSeverityLvl lvl, String format, Object... params) {
         if(_currentLvl.ordinal() > lvl.ordinal()) return;
 
+        String str = String.format(format, params);
+
         for(MessageHandler handler : handlers)
-            handler.processMessage(format, params);
+            handler.processMessage(str);
     }
 
     public static Logger getLogger(String name) {
