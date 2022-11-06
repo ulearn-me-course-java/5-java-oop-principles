@@ -1,25 +1,17 @@
-package com.example.task01;
+package com.example.task04;
 
-import java.lang.reflect.Array;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Task01Main {
-    public static void main(String[] args) {
-
-    }
-}
-
-class Logger {
+public class Logger {
 
     final private String name;
     private LoggerLevel level;
     final static private HashMap<String, Logger> loggers = new HashMap<String, Logger>();
 
-    public Logger (String name) {
+    public Logger(String name) {
         this.name = name;
         this.level = LoggerLevel.INFO;
         loggers.put(name, this);
@@ -86,18 +78,7 @@ class Logger {
         }
     }
 
-    private  void log(LoggerLevel level, String form, Object... args) {
+    private void log(LoggerLevel level, String form, Object... args) {
         System.out.println(MessageFormat.format(form, args));
     }
 }
-
-enum LoggerLevel {
-    DEBUG,
-    INFO,
-    WARNING,
-    ERROR
-}
-
-
-
-

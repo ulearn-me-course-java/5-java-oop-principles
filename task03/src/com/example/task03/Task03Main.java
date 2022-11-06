@@ -12,3 +12,4 @@ public class Task03Main {
         System.out.println(String.format("Minutes:      %d", unit.toMinutes()));
     }
 }
+

@@ -19,3 +19,4 @@ public class Task02Main {
         System.out.println(bill);
     }
 }
+
