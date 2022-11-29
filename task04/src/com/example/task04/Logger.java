@@ -32,37 +32,37 @@ public class Logger {
     public ImportanceLevel getLevel() {
         return importanceLevel;
     }
-    public void debug(String message) {
-        log(ImportanceLevel.DEBUG, message);
+    public void debug(String message, MessageHandler handler) {
+        log(ImportanceLevel.DEBUG, message, handler);
     }
-    public void debug(String template, Object... params) {
-        log(ImportanceLevel.DEBUG, template, params);
+    public void debug(String template, MessageHandler handler, Object... params) {
+        log(ImportanceLevel.DEBUG, template, handler, params);
     }
-    public void info(String message) {
-        log(ImportanceLevel.INFO, message);
+    public void info(String message, MessageHandler handler) {
+        log(ImportanceLevel.INFO, message, handler);
     }
-    public void info(String template, Object... params) {
-        log(ImportanceLevel.INFO, template, params);
+    public void info(String template, MessageHandler handler, Object... params) {
+        log(ImportanceLevel.INFO, template, handler, params);
     }
-    public void warning(String message) {
-        log(ImportanceLevel.WARNING, message);
+    public void warning(String message, MessageHandler handler) {
+        log(ImportanceLevel.WARNING, message, handler);
     }
-    public void warning(String template, Object... params) {
-        log(ImportanceLevel.WARNING, template, params);
+    public void warning(String template, MessageHandler handler, Object... params) {
+        log(ImportanceLevel.WARNING, template, handler, params);
     }
-    public void error(String message) {
-        log(ImportanceLevel.ERROR, message);
+    public void error(String message, MessageHandler handler) {
+        log(ImportanceLevel.ERROR, message, handler);
     }
-    public void error(String template, Object... params) {
-        log(ImportanceLevel.ERROR, template, params);
+    public void error(String template, MessageHandler handler, Object... params) {
+        log(ImportanceLevel.ERROR, template, handler, params);
     }
-    public void log(ImportanceLevel importanceLevel, String message) {
+    public void log(ImportanceLevel importanceLevel, String message, MessageHandler handler) {
         if (importanceLevel.ordinal() >= this.importanceLevel.ordinal()) {
             SimpleDateFormat formatForDate = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss ");
-            System.out.printf("[%s] %s %s - %s%n", importanceLevel, formatForDate.format(new Date()), name, message);
+            handler.log("[" + importanceLevel + "] " + formatForDate.format(new Date()) + " " + name + " - " + message);
         }
     }
-    public void log(ImportanceLevel importanceLevel, String template, Object... params) {
-        log(importanceLevel, String.format(template, params));
+    public void log(ImportanceLevel importanceLevel, String template, MessageHandler handler, Object... params) {
+        log(importanceLevel, String.format(template, params), handler);
     }
 }

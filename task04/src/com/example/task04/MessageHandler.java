@@ -1,5 +1,8 @@
 package com.example.task04;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Интерфейс для конечной обработки сообщений логгера
  */
