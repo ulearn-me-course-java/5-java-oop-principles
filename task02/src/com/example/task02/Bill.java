@@ -7,7 +7,7 @@ import java.util.List;
  * Счет к оплате
  */
 public class Bill {
-    private List<BillItem> items = new ArrayList<>();
+    protected List<BillItem> items = new ArrayList<>();
 
     /**
      * Добавляет товар в корзину
@@ -49,11 +49,11 @@ public class Bill {
             sb.append(item.item.getName()).append('(').append(item.amount).append(')');
             sb.append('\n');
         }
-        sb.append("Сумма к оплате: ").append(getPrice());
+        sb.append("Sum: ").append(getPrice());
         return sb.toString();
     }
 
-    private static class BillItem {
+    protected static class BillItem { //а зачем нужен этот класс?
         final Item item;
         int amount;
 
