@@ -6,13 +6,42 @@ package com.example.task03;
 public class TimeUnitUtils {
 
     /**
+     * Конвертирует интервал в миллисекундах в интервал в миллисекундах
+     *
+     * @param millis интервал в миллисекундах
+     * @return интервал в миллисекундах
+     */
+    public static Milliseconds toMillis(Milliseconds millis) {
+        return new Milliseconds(millis.toMillis());
+    }
+
+
+    /**
      * Конвертирует интервал в секундах в интервал в миллисекундах
      *
      * @param seconds интервал в секундах
      * @return интервал в миллисекундах
      */
-    public static Milliseconds toMillis(Seconds seconds) {
-        return new Milliseconds(seconds.toMillis());
+    public static Milliseconds toMillis(Seconds seconds) { return new Milliseconds(seconds.toMillis()); }
+
+    /**
+     * Конвертирует интервал в минутах в интервал в миллисекундах
+     *
+     * @param minutes интервал в минутах
+     * @return интервал в миллисекундах
+     */
+    public static Milliseconds toMillis(Minutes minutes) {
+        return new Milliseconds(minutes.toMillis());
+    }
+
+    /**
+     * Конвертирует интервал в часах в интервал в миллисекундах
+     *
+     * @param hours интервал в часах
+     * @return интервал в миллисекундах
+     */
+    public static Milliseconds toMillis(Hours hours) {
+        return new Milliseconds(hours.toMillis());
     }
 
     /**
@@ -24,4 +53,96 @@ public class TimeUnitUtils {
     public static Seconds toSeconds(Milliseconds millis) {
         return new Seconds(millis.toSeconds());
     }
+
+    /**
+     * Конвертирует интервал в секундах в интервал в секундах
+     *
+     * @param seconds интервал в секундах
+     * @return интервал в секундах
+     */
+    public static Seconds toSeconds(Seconds seconds) {
+        return new Seconds(seconds.toSeconds());
+    }
+
+    /**
+     * Конвертирует интервал в минутах в интервал в секундах
+     *
+     * @param minutes интервал в минутах
+     * @return интервал в секундах
+     */
+    public static Seconds toSeconds(Minutes minutes) {
+        return new Seconds(minutes.toSeconds());
+    }
+
+    /**
+     * Конвертирует интервал в часах в интервал в секундах
+     *
+     * @param hours интервал в часах
+     * @return интервал в секундах
+     */
+    public static Seconds toSeconds(Hours hours) { return new Seconds(hours.toSeconds()); }
+
+    /**
+     * Конвертирует интервал в миллисекундах в интервал в минутах
+     *
+     * @param millis интервал в миллисекундах
+     * @return интервал в минутах
+     */
+    public static Minutes toMinutes(Milliseconds millis) { return new Minutes(millis.toMinutes()); }
+
+    /**
+     * Конвертирует интервал в секундах в интервал в минутах
+     *
+     * @param seconds интервал в секундах
+     * @return интервал в минутах
+     */
+    public static Minutes toMinutes(Seconds seconds) { return new Minutes(seconds.toMinutes()); }
+
+    /**
+     * Конвертирует интервал в минутах в интервал в минутах
+     *
+     * @param minutes интервал в минутах
+     * @return интервал в минутах
+     */
+    public static Minutes toMinutes(Minutes minutes) { return new Minutes(minutes.toMinutes()); }
+
+    /**
+     * Конвертирует интервал в часах в интервал в минутах
+     *
+     * @param hours интервал в часах
+     * @return интервал в минутах
+     */
+    public static Minutes toMinutes(Hours hours) { return new Minutes(hours.toMinutes()); }
+
+    /**
+     * Конвертирует интервал в миллисекундах в интервал в часах
+     *
+     * @param millis интервал в миллисекундах
+     * @return интервал в часах
+     */
+    public static Hours toHours(Milliseconds millis) { return new Hours(millis.getHours()); }
+
+    /**
+     * Конвертирует интервал в секундах в интервал в часах
+     *
+     * @param seconds интервал в секундах
+     * @return интервал в часах
+     */
+    public static Hours toHours(Seconds seconds) { return new Hours(seconds.getHours()); }
+
+    /**
+     * Конвертирует интервал в минутах в интервал в часах
+     *
+     * @param minutes интервал в минутах
+     * @return интервал в часах
+     */
+    public static Hours toHours(Minutes minutes) { return new Hours(minutes.getHours()); }
+
+    /**
+     * Конвертирует интервал в часах в интервал в часах
+     *
+     * @param hours интервал в часах
+     * @return интервал в часах
+     */
+    public static Hours toHours(Hours hours) { return new Hours(hours.getHours()); }
 }
