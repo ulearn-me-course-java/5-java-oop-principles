@@ -12,12 +12,12 @@ public class Bill {
     /**
      * Добавляет товар в корзину
      *
-     * @param item товар
+     * @param item   товар
      * @param amount количество
      */
     public void add(Item item, int amount) {
         boolean found = false;
-        for (BillItem billItem: items) {
+        for (BillItem billItem : items) {
             if (billItem.item.equals(item)) {
                 found = true;
                 billItem.amount += amount;
@@ -36,7 +36,7 @@ public class Bill {
      */
     public long getPrice() {
         long price = 0;
-        for (BillItem item: items) {
+        for (BillItem item : items) {
             price += item.item.getPrice() * item.amount;
         }
         return price;
@@ -45,7 +45,7 @@ public class Bill {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Счет к оплате\n");
-        for(BillItem item : items) {
+        for (BillItem item : items) {
             sb.append(item.item.getName()).append('(').append(item.amount).append(')');
             sb.append('\n');
         }
