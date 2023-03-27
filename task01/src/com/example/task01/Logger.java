@@ -103,7 +103,7 @@ public class Logger {
             return true;
         } else if (obj instanceof Logger) {
             Logger logger = (Logger) obj;
-            return logger.name == this.name;
+            return Objects.equals(logger.name, this.name);
         }
         return false;
     }
