@@ -22,6 +22,10 @@ public class TimeUnitUtils {
      * @return интервал в секундах
      */
     public static Seconds toSeconds(Milliseconds millis) {
-        return new Seconds(millis.toSeconds());
+        return new Seconds(Math.round(millis.toSeconds()));
+    }
+
+    public static Minutes toMinutes(Seconds seconds) {
+        return new Minutes(Math.round(seconds.toMinutes()));
     }
 }
