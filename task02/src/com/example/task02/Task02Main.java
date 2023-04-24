@@ -22,5 +22,7 @@ public class Task02Main {
         System.out.println("2:"+discountBill.getAbsoluteDiscount());
         System.out.println("3:"+discountBill.getPrice());
         System.out.println("4:"+discountBill);
+
+
     }
 }
