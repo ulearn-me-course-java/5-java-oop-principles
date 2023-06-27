@@ -4,7 +4,6 @@ package com.example.task03;
  * Интерфейс для интервалов времени в определенных единицах
  */
 public interface TimeUnit {
-
     /**
      * Возвращает продолжительность текущего интервала, пересчитанного в миллисекундах.
      *
@@ -28,4 +27,5 @@ public interface TimeUnit {
      */
     long toMinutes();
 
+    long toHours();
 }
