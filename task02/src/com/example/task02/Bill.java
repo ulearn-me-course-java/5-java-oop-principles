@@ -41,7 +41,6 @@ public class Bill {
         }
         return price;
     }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Счет к оплате\n");
@@ -52,7 +51,6 @@ public class Bill {
         sb.append("Сумма к оплате: ").append(getPrice());
         return sb.toString();
     }
-
     private static class BillItem {
         final Item item;
         int amount;
