@@ -13,13 +13,28 @@ public class Logger {
     private final String name;
     private Level level;
 
-    public Logger(String name) {
+    public Logger(String name, Level level) {
+        this.level = level;
         this.name = name;
-        loggers.put(name, this);
+        if (!loggers.containsKey(name)) {
+            loggers.put(name, this);
+        }
+    }
+
+    public Logger(String name) {
+        this.level = Level.DEBUG;
+        this.name = name;
+        if (!loggers.containsKey(name)) {
+            loggers.put(name, this);
+        }
     }
 
     public static Logger getLogger(String name) {
-        return loggers.get(name);
+        Logger logger = loggers.get(name);
+        if (logger == null) {
+            return new Logger(name);
+        }
+        return logger;
     }
 
     public String getName() {
