@@ -15,10 +15,11 @@ public class RotationFileHandler implements MessageHandler{
 
     @Override
     public void writeMessage(String message){
-        try (FileWriter fileWriter = new FileWriter((LocalDateTime.now().truncatedTo(timeInterval)).toString(),true)) {
-            fileWriter.write(message);
+        LocalDateTime time = LocalDateTime.now().truncatedTo(timeInterval);
+        try (FileWriter fileWriter = new FileWriter(time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd(hh-mm-ss)"))+".txt",true)) {
+            fileWriter.write(message+"\n");
         }catch (IOException ex){
-
+            System.out.println(ex.getMessage());
         }
     }
 }

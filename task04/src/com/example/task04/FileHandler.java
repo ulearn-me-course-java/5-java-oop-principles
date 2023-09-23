@@ -12,9 +12,9 @@ public class FileHandler implements MessageHandler {
     @Override
     public void writeMessage(String message){
         try (FileWriter fileWriter = new FileWriter(fileName,true)) {
-                fileWriter.write(message);
+            fileWriter.write(message+"\n");
         }catch (IOException ex){
-
+            System.out.println(ex.getMessage());
         }
     }
 }
