@@ -2,6 +2,9 @@ package com.example.task01;
 
 
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,40 +14,33 @@ import static java.text.MessageFormat.format;
 
 public class Logger {
     private String name;
-    private ImportanceLevel level;
+    private ImportanceLevel level = ImportanceLevel.DEBUG;
     private static HashMap<String,Logger> loggerList = new HashMap<String,Logger>();
     public Logger(String name){
         this.name = name;
+        loggerList.put(name,this);
     }
     public String getName(){
         return name;
     }
     public static Logger getLogger(String newName){
-        for (String name:
-                loggerList.keySet()) {
-            if (name==newName){
-                return loggerList.get(name);
-            }
+
+        if(loggerList.containsKey(newName)){
+            return loggerList.get(newName);
         }
-        Logger newLogger = new Logger(newName);
-        loggerList.put(newName,newLogger);
-        return newLogger;
+        return new Logger(newName);
     }
-    private String log(ImportanceLevel level, String message){
-        String res = null;
+    private void log(ImportanceLevel level, String message){
         if (this.level.ordinal() <= level.ordinal() ){
-            res = String.format("[%s] %t %t %s - %s",level.name(), java.time.LocalDate.now(),
-                    java.time.LocalTime.now(), getName(), message);
+            System.out.println(String.format("[%s] %s %s - %s",level.name(),
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd hh:mm:ss")), name, message));
         }
-        return res;
+
     }
-    private String log(ImportanceLevel level, String messageFormat ,Object... args){
-        String res = null;
+    private void log(ImportanceLevel level, String messageFormat ,Object... args){
         if (this.level.ordinal() <= level.ordinal() ){
-            res = String.format("[%s] %t %t %s - %s",level.name(), java.time.LocalDate.now(),
-                    java.time.LocalTime.now(), getName(), String.format(messageFormat,args));
+            System.out.println(String.format(messageFormat,args));
         }
-        return res;
     }
     public void setLevel(ImportanceLevel level){
         this.level = level;
@@ -52,29 +48,29 @@ public class Logger {
     public ImportanceLevel getLevel(){
         return level;
     }
-    public String debug(String message){
-        return log(ImportanceLevel.DEBUG,message);
+    public void debug(String message){
+        log(ImportanceLevel.DEBUG,message);
     }
-    public String debug(String messageFormat, Object... args){
-        return log(ImportanceLevel.DEBUG,messageFormat, args);
+    public void debug(String messageFormat, Object... args){
+        log(ImportanceLevel.DEBUG,messageFormat, args);
     }
-    public String info(String message){
-        return log(ImportanceLevel.INFO,message);
+    public void info(String message){
+        log(ImportanceLevel.INFO,message);
     }
-    public String info(String messageFormat, Object... args){
-        return log(ImportanceLevel.INFO,messageFormat, args);
+    public void info(String messageFormat, Object... args){
+        log(ImportanceLevel.INFO,messageFormat, args);
     }
-    public String warning(String message){
-        return log(ImportanceLevel.WARNING,message);
+    public void warning(String message){
+        log(ImportanceLevel.WARNING,message);
     }
-    public String warning(String messageFormat, Object... args){
-        return log(ImportanceLevel.WARNING,messageFormat, args);
+    public void warning(String messageFormat, Object... args){
+        log(ImportanceLevel.WARNING,messageFormat, args);
     }
-    public String error(String message){
-        return log(ImportanceLevel.ERROR,message);
+    public void error(String message){
+        log(ImportanceLevel.ERROR,message);
     }
-    public String error(String messageFormat, Object... args){
-        return log(ImportanceLevel.ERROR,messageFormat, args);
+    public void error(String messageFormat, Object... args){
+        log(ImportanceLevel.ERROR,messageFormat, args);
     }
 }
 
