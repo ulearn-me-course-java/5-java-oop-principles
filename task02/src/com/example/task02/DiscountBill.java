@@ -2,24 +2,23 @@ package com.example.task02;
 
 public class DiscountBill extends Bill {
 
-    private int discount = 0;
+    private double discount = 0;
 
-    public DiscountBill(int discount) {
-        if (discount <= 100 && discount >= 0) {
+    public DiscountBill(double discount) {
+
+        if (discount <= 1 && discount >= 0) {
             this.discount = discount;
         } else {
-            this.discount = 0;
+            throw new IllegalArgumentException("Discount can not be less than 0 and more than 1");
         }
         ;
     }
 
-    public int getDiscountInPercent() {
-        return discount;
+    public String getDiscountInPercent() {
+        return discount*100 + "%";
     }
 
-    public long totalDiscount() {
-        return getPrice() * discount / 100;
+    public double getDiscountAbsolute(){
+        return getPrice() - Math.ceil(getPrice()*(1- discount));
     }
-
-
 }
