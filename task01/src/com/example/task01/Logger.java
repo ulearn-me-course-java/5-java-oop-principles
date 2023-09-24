@@ -61,45 +61,48 @@ public class Logger {
     }
 
     public void error(String message) {
-        print(Level.ERROR, message);
+        log(Level.ERROR, message);
     }
 
     public void error(String format, Object... elements) {
-        print(Level.ERROR, format, elements);
+        log(Level.ERROR, format, elements);
     }
 
     public void info(String message) {
-        print(Level.INFO, message);
+        log(Level.INFO, message);
     }
 
     public void info(String format, Object... elements) {
-        print(Level.INFO, format, elements);
+        log(Level.INFO, format, elements);
     }
 
     public void warning(String message) {
-        print(Level.WARNING, message);
+        log(Level.WARNING, message);
     }
 
     public void warning(String format, Object... elements) {
-        print(Level.WARNING, format, elements);
+        log(Level.WARNING, format, elements);
     }
 
     public void debug(String message) {
-        print(Level.DEBUG, message);
+        log(Level.DEBUG, message);
     }
 
     public void debug(String format, Object... elements) {
-        print(Level.DEBUG, format, elements);
+        log(Level.DEBUG, format, elements);
     }
 
-    private void print(Level level, String message) {
-        System.out.println(String.format("[%s] %s %s - %s", level.name(), getTime(), name, message));
+    private void log(Level level, String message) {
+        if(this.level.ordinal() <= level.ordinal() ) {
+            System.out.println(String.format("[%s] %s %s - %s", level.name(), getTime(), name, message));
+        }
+
     }
 
-    private void print(Level level, String formatOfMessage, Object elements) {
-        MessageFormat form = new MessageFormat(formatOfMessage);
-        System.out.println(form.format(elements));
+    private void log(Level level, String formatOfMessage, Object elements) {
+        if(this.level.ordinal() <= level.ordinal() ) {
+            MessageFormat form = new MessageFormat(formatOfMessage);
+            System.out.println(form.format(elements));
+        }
     }
-
-
 }
