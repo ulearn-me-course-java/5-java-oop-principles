@@ -7,8 +7,8 @@ public class Task03Main {
     }
 
     private static void printTimeUnit(TimeUnit unit) {
-        System.out.println(String.format("Milliseconds: %d", unit.toMillis()));
-        System.out.println(String.format("Seconds:      %d", unit.toSeconds()));
-        System.out.println(String.format("Minutes:      %d", unit.toMinutes()));
+        System.out.printf("Milliseconds: %d%n", unit.toMillis());
+        System.out.printf("Seconds:      %d%n", unit.toSeconds());
+        System.out.printf("Minutes:      %d%n", unit.toMinutes());
     }
 }
