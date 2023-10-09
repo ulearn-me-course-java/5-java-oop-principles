@@ -14,11 +14,17 @@ public class DiscountBill extends Bill {
         ;
     }
 
+
     public String getDiscountInPercent() {
-        return discount*100 + "%";
+        return discount * 100 + "%";
     }
 
-    public double getDiscountAbsolute(){
-        return getPrice() - Math.ceil(getPrice()*(1- discount));
+    public long  getAbsoluteDiscount() {
+        return  super.getPrice() - getPrice();
+    }
+
+    @Override
+    public long getPrice() {
+        return (long) (super.getPrice() - Math.ceil(super.getPrice() * (1 - discount)));
     }
 }

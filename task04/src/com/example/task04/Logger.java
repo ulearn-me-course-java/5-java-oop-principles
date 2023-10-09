@@ -28,6 +28,8 @@ public class Logger {
     }
 
     public Logger(String name) {
+        for (Logger logger : logs)
+            if (logger.name == name) throw new IllegalArgumentException("Logger with this name already exist");
         this.name = name;
         logs.add(this);
         messageHandlers = new MessageHandler[4];

@@ -1,6 +1,5 @@
 package com.example.task01;
 
-import com.sun.xml.internal.ws.api.handler.MessageHandler;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -29,6 +28,8 @@ public class Logger {
     }
 
     public Logger(String name) {
+        for (Logger logger : logs)
+            if (logger.name == name) throw new IllegalArgumentException("Logger with this name already exist");
         this.name = name;
         logs.add(this);
     }
