@@ -8,6 +8,7 @@ public class Seconds implements TimeUnit {
     private final long amount;
 
     public Seconds(long amount) {
+        if (amount < 0) throw new IllegalArgumentException();
         this.amount = amount;
     }
 
@@ -23,6 +24,11 @@ public class Seconds implements TimeUnit {
 
     @Override
     public long toMinutes() {
-        return Math.round(amount / 60);
+        return Math.round(amount / 60.);
+    }
+
+    @Override
+    public long toHours() {
+        return Math.round(amount / (60. * 60));
     }
 }
