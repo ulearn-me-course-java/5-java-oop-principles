@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,11 +13,11 @@ public class Logger {
     final String name;
     private Level level;
     private DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-    private Handler handler;
+    private ArrayList<Handler> handlers = new ArrayList<>();
 
-    public Logger(String name, Handler handler) {
+    public Logger(String name, Level level, Handler... handlers) {
         this.name = name;
-        this.handler = handler;
+        this.handlers.addAll(Arrays.asList(handlers));
         loggers.add(this);
     }
 
@@ -87,18 +88,19 @@ public class Logger {
     }
 
     private void logMessage(Level level, String message) {
-        if (level == null) {
-            handler.log(MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message));
-        } else if (level.ordinal() >= this.level.ordinal()) {
-            handler.log(MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message));
+        if (level.ordinal() >= this.level.ordinal()) {
+            String messageToLog = MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message);
+            for (Handler handler : handlers) {
+                handler.log(messageToLog);
+            }
         }
     }
 
     private void logMessage(Level level, String format, Object... args) {
-        if (level == null) {
-            handler.log(MessageFormat.format(format, args));
-        } else if (level.ordinal() >= this.level.ordinal()) {
-            handler.log(MessageFormat.format(format, args));
+        if (level.ordinal() >= this.level.ordinal()) {
+            for (Handler handler : handlers) {
+                handler.log(MessageFormat.format(format, args));
+            }
         }
     }
 
