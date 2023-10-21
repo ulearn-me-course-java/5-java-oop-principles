@@ -1,7 +1,9 @@
 package com.example.task04;
 
 public class RotationFileHandler implements Handler{
-    public void log() {
+
+    @Override
+    public void log(String message) {
 
     }
 }

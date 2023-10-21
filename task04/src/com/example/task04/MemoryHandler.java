@@ -1,7 +1,9 @@
 package com.example.task04;
 
 public class MemoryHandler implements Handler {
-    public void log() {
+
+    @Override
+    public void log(String message) {
         return;
     }
 }

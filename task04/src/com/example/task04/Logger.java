@@ -12,9 +12,11 @@ public class Logger {
     final String name;
     private Level level;
     private DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    private Handler handler;
 
     public Logger(String name, Handler handler) {
         this.name = name;
+        this.handler = handler;
         loggers.add(this);
     }
 
@@ -86,17 +88,17 @@ public class Logger {
 
     private void logMessage(Level level, String message) {
         if (level == null) {
-            System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message));
+            handler.log(MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message));
         } else if (level.ordinal() >= this.level.ordinal()) {
-            System.out.println(MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message));
+            handler.log(MessageFormat.format("[{0}] {1} {2} - {3}", level, dateFormat.format(new Date()), this.name, message));
         }
     }
 
     private void logMessage(Level level, String format, Object... args) {
         if (level == null) {
-            System.out.println(MessageFormat.format(format, args));
+            handler.log(MessageFormat.format(format, args));
         } else if (level.ordinal() >= this.level.ordinal()) {
-            System.out.println(MessageFormat.format(format, args));
+            handler.log(MessageFormat.format(format, args));
         }
     }
 
