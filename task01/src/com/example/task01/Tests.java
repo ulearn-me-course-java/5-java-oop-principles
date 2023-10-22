@@ -21,7 +21,7 @@ public class Tests {
     {
         try {
             LOGGER_CLASS = Class.forName("com.example.task01.Logger");
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e)  {
             throw new AssertionError("Не найден ожидаемый класс логгера", e);
         }
     }
