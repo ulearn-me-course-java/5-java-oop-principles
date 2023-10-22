@@ -14,6 +14,7 @@ public class Task04Main {
                 System.out.println(message);
             }
         });
+
         Logger log2 = new Logger("name2", ImportanceLevel.DEBUG, ff, fileHandler, consoleHandler, message -> System.out.println(message));
 
         log2.log(ImportanceLevel.INFO, "%s %d", "mes", 5);

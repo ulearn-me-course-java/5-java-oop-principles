@@ -35,32 +35,32 @@ public class Logger {
         log(ImportanceLevel.DEBUG, message);
     }
 
-    public void debug(String format, Object ...args){
-        log(ImportanceLevel.DEBUG, format, args);
+    public void debug(String format, Object ...оbjects){
+        log(ImportanceLevel.DEBUG, format, оbjects);
     }
 
     public void info(String message){
         log(ImportanceLevel.INFO, message);
     }
 
-    public void info(String format, Object ...args){
-        log(ImportanceLevel.INFO, format, args);
+    public void info(String format, Object ...оbjects){
+        log(ImportanceLevel.INFO, format, оbjects);
     }
 
     public void warning(String message){
         log(ImportanceLevel.WARNING, message);
     }
 
-    public void warning(String format, Object ...args){
-        log(ImportanceLevel.WARNING, format, args);
+    public void warning(String format, Object ...оbjects){
+        log(ImportanceLevel.WARNING, format, оbjects);
     }
 
     public void error(String message){
         log(ImportanceLevel.ERROR, message);
     }
 
-    public void error(String format, Object ...args){
-        log(ImportanceLevel.ERROR, format, args);
+    public void error(String format, Object ...оbjects){
+        log(ImportanceLevel.ERROR, format, оbjects);
     }
 
     public void log(ImportanceLevel logLevel, String message){
