@@ -1,7 +1,7 @@
 package com.example.task02;
 
 public class DiscountBill extends Bill{
-    private double discount;
+    private final double discount;
     public DiscountBill(int discount){
         this.discount=discount;
     }
@@ -10,7 +10,7 @@ public class DiscountBill extends Bill{
         return (long) Math.ceil(super.getPrice()*(1- discount/100));
     }
     public String getDiscountPercentages(){
-        return discount/100 + "%";
+        return discount + "%";
     }
     public double getDiscountAbsolute(){
         return super.getPrice() - getPrice();

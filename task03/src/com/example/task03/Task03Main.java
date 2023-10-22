@@ -2,8 +2,10 @@ package com.example.task03;
 
 public class Task03Main {
     public static void main(String[] args) {
-        TimeUnit unit1 = new Seconds(4000);
+        TimeUnit unit1 = new Milliseconds(4000);
+
         printTimeUnit(unit1);
+        
         Tests tests = new Tests();
         tests.testMilliseconds();
         tests.testMilliseconds2();

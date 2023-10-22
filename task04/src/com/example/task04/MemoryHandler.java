@@ -5,8 +5,10 @@ import java.util.ArrayList;
 public class MemoryHandler implements MessageHandler{
     private ArrayList<String> messages = new ArrayList<String>();
     private final int messagesArrayMaxSize;
-    public MemoryHandler(int messagesArrayMaxSize){
+    private MessageHandler messageHandler;
+    public MemoryHandler(int messagesArrayMaxSize,MessageHandler messageHandler){
         this.messagesArrayMaxSize = messagesArrayMaxSize;
+        this.messageHandler = messageHandler;
     }
     @Override
     public void writeMessage(String message){
@@ -14,7 +16,7 @@ public class MemoryHandler implements MessageHandler{
         if (messages.size()==messagesArrayMaxSize){
             for (String s:
                  messages) {
-                System.out.println(s);
+                messageHandler.writeMessage(s);
             }
         }
     }

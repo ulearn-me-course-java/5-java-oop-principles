@@ -8,10 +8,9 @@ public class Task04Main {
         logger.AddHandler(new ConsoleHandler());
         logger.AddHandler(new FileHandler("logFile-2"));
         logger.AddHandler(new RotationFileHandler(ChronoUnit.MINUTES));
-        logger.AddHandler(new MemoryHandler(3));
+        logger.AddHandler(new MemoryHandler(3,new ConsoleHandler()));
 
         logger.error("error!!");
         logger.warning("warning!");
-        logger.debug("warning!");
     }
 }

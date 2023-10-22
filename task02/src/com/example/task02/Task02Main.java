@@ -14,8 +14,11 @@ public class Task02Main {
         bill.add(ITEM1, 10);
         bill.add(ITEM2, 3);
         bill.add(ITEM4, 1);
+
         System.out.println(bill);
+
         bill.add(ITEM3, 3);
+
         System.out.println(bill);
         System.out.println(((DiscountBill)bill).getDiscountPercentages());
         System.out.println(((DiscountBill)bill).getDiscountAbsolute());
