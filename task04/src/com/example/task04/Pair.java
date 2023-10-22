@@ -1,5 +1,4 @@
-package com.example.task01;
-
+package com.example.task04;
 public class Pair {
     public String Name;
     public Logger logger;

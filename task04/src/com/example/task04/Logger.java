@@ -1,4 +1,5 @@
-package com.example.task01;
+package com.example.task04;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,9 @@ public class Logger {
     public String getName(){
         return Name;
     }
-    public Logger(String name) {
+    public Logger(String name, MessageHandler handler) {
         this.Name = name;
+        this.handler = handler;
         loggers.add(new Pair(this.Name, this));
     }
     public static Logger getLogger(String name){
@@ -20,7 +22,7 @@ public class Logger {
                 return pair.logger;
             }
         }
-        return new Logger(name);
+        return new Logger(name, new ConsoleHandler());
     }
     private String Level = "DEBUG";
     public void setLevel(String level){
@@ -28,6 +30,13 @@ public class Logger {
     }
     public String getLevel(){
         return Level;
+    }
+    private MessageHandler handler;
+    public void setHandler(MessageHandler handler){
+        this.handler = handler;
+    }
+    public MessageHandler getHandler() {
+        return handler;
     }
     public static int levelToInt(String level){
         switch (level) {
@@ -43,13 +52,13 @@ public class Logger {
                 return 0;
         }
     }
-    public void log(String level, String message){
-            if (levelToInt(level) >= levelToInt(this.getLevel())) {
-                System.out.println("[" + level + "]" + " " +
-                        new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(new Date())
-                        + " " + this.Name + " - " + message);
-            }
+    public void log(String level, String message) {
+        if (levelToInt(level) >= levelToInt(this.getLevel())) {
+            handler.log("[" + level + "]" + " " +
+                    new SimpleDateFormat("yyyy.MM.dd hh:mm:ss").format(new Date())
+                    + " " + this.Name + " - " + message);
         }
+    }
     public void log(String level, String format, Object... params) {
         log(level, String.format(format, params));
     }
