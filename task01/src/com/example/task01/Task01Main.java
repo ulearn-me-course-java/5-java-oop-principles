@@ -9,5 +9,6 @@ public class Task01Main {
         logger.setLevel(Logger.LogLevel.INFO);
         System.out.println(logger.getLevel());
         logger.info("connected successfully!");
+        Logger log2 = new Logger("connectionLogger");
     }
 }
