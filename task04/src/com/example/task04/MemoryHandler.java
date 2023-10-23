@@ -6,6 +6,9 @@ public class MemoryHandler implements MessageHandler{
     private ArrayList<String> messages = new ArrayList<String>();
     private final int messagesArrayMaxSize;
     private MessageHandler messageHandler;
+    public MemoryHandler(MessageHandler messageHandler){
+        this (1, messageHandler);
+    }
     public MemoryHandler(int messagesArrayMaxSize,MessageHandler messageHandler){
         this.messagesArrayMaxSize = messagesArrayMaxSize;
         this.messageHandler = messageHandler;
@@ -18,6 +21,7 @@ public class MemoryHandler implements MessageHandler{
                  messages) {
                 messageHandler.writeMessage(s);
             }
+            messages.clear();
         }
     }
 }

@@ -17,7 +17,7 @@ public class Logger {
     private ImportanceLevel level = ImportanceLevel.DEBUG;
     private static HashMap<String, Logger> loggerList = new HashMap<>();
 
-    public Logger(String name) {
+    private Logger(String name) {
         this.name = name;
         loggerList.put(name, this);
     }
