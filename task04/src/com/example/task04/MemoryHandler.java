@@ -42,9 +42,15 @@ public class MemoryHandler implements MessageHandler {
         }
     }
 
-    private void runHandleMessage(String message){
+    public void runHandleMessage(String message){
         for(MessageHandler messageHandler : mesHandlers){
             messageHandler.handleMessage(message);
         }
+    }
+    public void runAllMessages(){
+        for(String mes : messages){
+            runHandleMessage(mes);
+        }
+        messages.clear();
     }
 }
