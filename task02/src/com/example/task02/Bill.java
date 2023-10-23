@@ -44,12 +44,12 @@ public class Bill {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Счет к оплате\n");
+        StringBuilder sb = new StringBuilder("Check to pay\n");
         for(BillItem item : items) {
             sb.append(item.item.getName()).append('(').append(item.amount).append(')');
             sb.append('\n');
         }
-        sb.append("Сумма к оплате: ").append(getPrice());
+        sb.append("Sum to pay: ").append(getPrice());
         return sb.toString();
     }
 
