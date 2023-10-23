@@ -15,6 +15,18 @@ public class MemoryHandler implements MessageHandler{
             for (String s : messages) {
                 System.out.println(s);
             }
+            messages = new ArrayList<>();
         }
+    }
+
+    public void writeMessage() {
+        for (String s : messages) {
+            System.out.println(s);
+        }
+        messages = new ArrayList<>();
+    }
+
+    public void justWrite (String message) {
+        System.out.println(message);
     }
 }
