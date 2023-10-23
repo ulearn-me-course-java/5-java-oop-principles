@@ -13,6 +13,10 @@ public class MemoryHandler implements MessageHandler {
         messageKeeper = new ArrayList<>();
     }
 
+    public MemoryHandler(MessageHandler handler) {
+        this(handler, 1);
+    }
+
     @Override
     public void log(String message) {
         messageKeeper.add(message);
