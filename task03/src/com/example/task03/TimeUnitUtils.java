@@ -1,5 +1,7 @@
 package com.example.task03;
 
+import jdk.internal.org.objectweb.asm.tree.MethodInsnNode;
+
 /**
  * Класс, в котором собраны методы для работы с {@link TimeUnit}
  */
@@ -15,6 +17,14 @@ public class TimeUnitUtils {
         return new Milliseconds(seconds.toMillis());
     }
 
+    public static Milliseconds ToMillis(Minutes minutes){
+        return new Milliseconds(minutes.toMillis());
+    }
+
+    public static Milliseconds ToMillis(Hours hours){
+        return new Milliseconds(hours.toMillis());
+    }
+
     /**
      * Конвертирует интервал в миллисекундах в интервал в секундах
      *
@@ -23,5 +33,41 @@ public class TimeUnitUtils {
      */
     public static Seconds toSeconds(Milliseconds millis) {
         return new Seconds(millis.toSeconds());
+    }
+
+    public static  Seconds toSeconds(Minutes minutes){
+        return new Seconds(minutes.toSeconds());
+    }
+
+    public static Seconds toSeconds(Hours hours){
+        return new Seconds(hours.toSeconds());
+    }
+
+
+
+
+    public static Minutes toMinutes(Milliseconds milliseconds){
+        return new Minutes(milliseconds.toMinutes());
+    }
+
+    public static Minutes toMinutes(Seconds seconds){
+        return new Minutes(seconds.toMinutes());
+    }
+
+    public static Minutes toMinutes(Hours hours){
+        return new Minutes(hours.toMinutes());
+    }
+
+    /** конвертирует интервал в милллисекундах в интервал в часах **/
+    public static Hours toHours(Milliseconds milliseconds){
+        return new Hours(milliseconds.toHours());
+    }
+
+    public static Hours toHours(Seconds seconds){
+        return new Hours(seconds.toHours());
+    }
+
+    public static Hours toHours(Minutes minutes){
+        return new Hours(minutes.toHours());
     }
 }
