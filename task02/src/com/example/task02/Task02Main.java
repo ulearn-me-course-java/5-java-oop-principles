@@ -1,7 +1,5 @@
 package com.example.task02;
-
 public class Task02Main {
-
     private static final Item ITEM1 = new Item("Товар 1", 10);
     private static final Item ITEM2 = new Item("Товар 2", 20);
     private static final Item ITEM3 = new Item("Товар 3", 30);
@@ -10,12 +8,18 @@ public class Task02Main {
     private static final Item ITEM6 = new Item("Товар 6", 60);
 
     public static void main(String[] args) {
-        Bill bill = new Bill();
+        Bill bill = new DiscountBill(0.4);
         bill.add(ITEM1, 10);
         bill.add(ITEM3, 3);
         bill.add(ITEM6, 1);
         System.out.println(bill);
         bill.add(ITEM3, 3);
         System.out.println(bill);
+
+        DiscountBill b = (DiscountBill)bill;
+
+        System.out.println(b.getPrice());
+
+        System.out.println(b.getDiscount());
     }
 }
