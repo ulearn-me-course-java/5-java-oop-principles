@@ -6,78 +6,78 @@ import java.util.Calendar;
 import java.text.MessageFormat;
 
 public class Logger {
-
-    private Level level;
-
-    enum Level {
-        DEBUG,
-        INFO,
-        WARNING,
-        ERROR;
-    }
-
-    private String name;
-
-    private static ArrayList<Logger> logs = new ArrayList<>();
-
-    public static Logger getLogger(String name) {
-        for (Logger logger : logs) if (logger.name == name) return logger;
-
-        Logger l = new Logger(name);
-        logs.add(l);
-        return l;
-    }
+    private static final ArrayList<Logger> logs = new ArrayList<>();
+    private final String name;
+    private Level level=Level.INFO;
 
     public Logger(String name) {
         this.name = name;
+        logs.add(this);
     }
 
+    public static Logger getLogger(String name) {
+        for (Logger logger : logs)
+            if (logger.name.equals(name)) return logger;
+        return new Logger(name);
+    }
 
-    private static String getNowTime() {
+    private String getNowTime() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
         return (formatter.format(calendar.getTime()));
     }
 
     public void error(String message) {
-        printMessage(Level.ERROR, message);
+        log(Level.ERROR, message);
     }
 
     public void error(String format, Object... elements) {
-        printMessage(Level.ERROR, format, elements);
+        log(Level.ERROR, format, elements);
     }
 
     public void info(String message) {
-        printMessage(Level.INFO, message);
+        log(Level.INFO, message);
     }
 
     public void info(String format, Object... elements) {
-        printMessage(Level.INFO, format, elements);
+        log(Level.INFO, format, elements);
     }
 
     public void warning(String message) {
-        printMessage(Level.WARNING, message);
+        log(Level.WARNING, message);
     }
 
     public void warning(String format, Object... elements) {
-        printMessage(Level.WARNING, format, elements);
+        log(Level.WARNING, format, elements);
     }
 
     public void debug(String message) {
-        printMessage(Level.DEBUG, message);
+        log(Level.DEBUG, message);
     }
 
     public void debug(String format, Object... elements) {
-        printMessage(Level.DEBUG, format, elements);
+        log(Level.DEBUG, format, elements);
+    }
+
+    public void log(Level level, String message) {
+        printMessage(level, message);
+    }
+
+    public void log(Level level, String template, Object... args) {
+        printMessage(level, template, args);
     }
 
     private void printMessage(Level level, String message) {
-        System.out.println(String.format("[%s] %s %s - %s", level.name(), Logger.getNowTime(), name, message));
+        if (level.ordinal() >= this.level.ordinal())
+            System.out.printf("[%s] %s %s - %s%n", level.name(), getNowTime(), name, message);
     }
 
     private void printMessage(Level level, String formatOfMessage, Object elements) {
-        MessageFormat form = new MessageFormat(formatOfMessage);
-        System.out.println(form.format(elements));
+        if (level.ordinal() >= this.level.ordinal()) {
+            MessageFormat form = new MessageFormat(formatOfMessage);
+            System.out.printf("[%s]", level.name());
+            System.out.println(form.format(elements));
+        }
     }
 
     public void setLevel(Level level) {
@@ -89,7 +89,7 @@ public class Logger {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Logger {
             return true;
         } else if (obj instanceof Logger) {
             Logger logger = (Logger) obj;
-            return logger.name == this.name;
+            return logger.name.equals(this.name);
         }
         return false;
     }

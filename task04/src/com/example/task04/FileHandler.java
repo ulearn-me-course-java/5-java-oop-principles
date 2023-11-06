@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 
 public class FileHandler implements MessageHandler {
-    private String fileName;
+    private final String fileName;
 
     public FileHandler(String fileName) {
         this.fileName = fileName;

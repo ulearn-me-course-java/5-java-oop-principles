@@ -65,5 +65,4 @@ public class TimeUnitUtils {
     public static Hours toHours(Seconds seconds) {
         return new Hours(seconds.toHours());
     }
-
 }

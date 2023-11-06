@@ -7,9 +7,9 @@ import java.time.temporal.ChronoUnit;
 public class RotationFileHandler implements MessageHandler {
 
 
-    private String fileName;
+    private final String fileName;
 
-    private ChronoUnit rotation;
+    private final ChronoUnit rotation;
 
     public RotationFileHandler(String fileName, ChronoUnit rotation) {
         this.fileName = fileName;
@@ -25,6 +25,7 @@ public class RotationFileHandler implements MessageHandler {
     }
 
     RotationFileHandler(ChronoUnit rotation) {
+
         this("message.txt", rotation);
     }
 
