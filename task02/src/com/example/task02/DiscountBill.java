@@ -9,7 +9,7 @@ public class DiscountBill extends Bill {
     }
 
     public double getDiscount(){
-        return this.discount;
+        return this.discount * 100;
     }
 
     public long getAbsDiscount(){
