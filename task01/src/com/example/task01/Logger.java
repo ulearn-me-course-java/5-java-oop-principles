@@ -29,9 +29,9 @@ public class Logger {
         return name;
     }
 
-    private static HashMap<String,Logger> loggers = new HashMap<>();
+    private static final HashMap<String,Logger> loggers = new HashMap<>();
 
-    public Logger(String name) {
+    private Logger(String name) {
         this.name = name;
         loggers.put(name,this);
     }
