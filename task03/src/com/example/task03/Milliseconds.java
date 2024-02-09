@@ -18,11 +18,16 @@ public class Milliseconds implements TimeUnit {
 
     @Override
     public long toSeconds() {
-        return amount / 1000;
+        return Math.round(amount * 0.001);
     }
 
     @Override
     public long toMinutes() {
-        return amount / 1000 * 60;
+        return Math.round(amount * 0.001 /60);
+    }
+
+    @Override
+    public long toHours() {
+        return (long)Math.round(amount* 0.001 /3600);
     }
 }
