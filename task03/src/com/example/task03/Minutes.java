@@ -3,7 +3,6 @@ package com.example.task03;
 public class Minutes implements TimeUnit {
 
     public Minutes(long amount) {
-        // TODO: реализовать
         throw new UnsupportedOperationException();
     }
 
